@@ -173,15 +173,18 @@
 
     .main-nav {
       display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      gap: 12px;
-      margin: 10px 0 26px;
-      padding-bottom: 8px;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      width: 100%;
+      margin: 12px 0 28px;
+      padding: 0 14px 8px;
     }
 
     .main-nav a {
-      padding: 12px 18px;
+      flex: 1;
+      text-align: center;
+      padding: 12px 14px;
       border-radius: 999px;
       border: 1px solid var(--line);
       background: rgba(255,255,255,0.04);
@@ -191,6 +194,7 @@
       transition: all 0.25s ease;
       box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
       backdrop-filter: blur(8px);
+      white-space: nowrap;
     }
 
     .main-nav a:hover,
@@ -335,54 +339,7 @@
       z-index: 1;
       display: flex;
       flex-direction: column;
-      gap: 16px;
       justify-content: center;
-    }
-
-    .subscription-card {
-      padding: 22px;
-      border-radius: 24px;
-      background: linear-gradient(135deg, rgba(22,36,60,0.98), rgba(16,28,47,0.98));
-      color: white;
-      border: 1px solid rgba(255,255,255,0.06);
-      box-shadow: 0 18px 34px rgba(0, 0, 0, 0.22);
-    }
-
-    .subscription-card h3 {
-      font-size: 22px;
-      margin-bottom: 10px;
-      letter-spacing: -0.01em;
-    }
-
-    .subscription-card p {
-      color: rgba(255,255,255,0.78);
-      font-size: 15px;
-      line-height: 1.7;
-      margin-bottom: 16px;
-    }
-
-    .subscription-list {
-      display: grid;
-      gap: 10px;
-    }
-
-    .subscription-list div {
-      padding-left: 16px;
-      position: relative;
-      color: #e9f1fb;
-      font-size: 14px;
-      line-height: 1.6;
-    }
-
-    .subscription-list div::before {
-      content: "";
-      position: absolute;
-      left: 0;
-      top: 8px;
-      width: 7px;
-      height: 7px;
-      border-radius: 50%;
-      background: var(--primary);
     }
 
     .hero-stats {
@@ -417,7 +374,7 @@
       display: grid;
       grid-template-columns: repeat(4, 1fr);
       gap: 24px;
-      margin-bottom: 40px;
+      margin-bottom: 28px;
     }
 
     .card {
@@ -519,26 +476,88 @@
       transform: translateX(4px);
     }
 
-    .bottom-grid {
-      display: grid;
-      grid-template-columns: 1.5fr 1fr;
-      gap: 24px;
-    }
-
-    .features,
-    .membership {
+    .membership-wide {
+      margin-bottom: 40px;
+      padding: 30px 32px;
       border-radius: var(--radius-xl);
+      border: 1px solid var(--line);
+      background: linear-gradient(180deg, rgba(14,24,42,0.98), rgba(8,14,25,0.98));
       box-shadow: var(--shadow-soft);
     }
 
+    .membership-wide-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 18px;
+      margin-bottom: 20px;
+    }
+
+    .membership-wide h3 {
+      font-size: 24px;
+      color: #fff;
+      letter-spacing: -0.01em;
+      margin-bottom: 10px;
+    }
+
+    .membership-wide p {
+      color: var(--text-soft);
+      line-height: 1.8;
+      font-size: 15px;
+      max-width: 760px;
+    }
+
+    .membership-wide .cta-btn {
+      width: auto;
+      min-width: 210px;
+      margin-top: 0;
+      align-self: flex-start;
+    }
+
+    .membership-points {
+      margin-top: 18px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+    }
+
+    .membership-points div {
+      padding: 18px 18px 18px 38px;
+      position: relative;
+      color: rgba(255,255,255,0.88);
+      line-height: 1.6;
+      font-size: 14px;
+      border-radius: 18px;
+      border: 1px solid rgba(255,255,255,0.06);
+      background: rgba(255,255,255,0.03);
+    }
+
+    .membership-points div::before {
+      content: "";
+      position: absolute;
+      left: 18px;
+      top: 24px;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--primary);
+    }
+
+    .bottom-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 24px;
+    }
+
     .features {
+      border-radius: var(--radius-xl);
+      box-shadow: var(--shadow-soft);
       padding: 32px;
       border: 1px solid var(--line);
       background: linear-gradient(180deg, #121f36, #0d1729);
     }
 
-    .features h3,
-    .membership h3 {
+    .features h3 {
       font-size: 24px;
       margin-bottom: 22px;
       color: #fff;
@@ -564,47 +583,13 @@
       color: #ffffff;
     }
 
-    .feature-item p,
-    .membership p {
+    .feature-item p {
       color: var(--text-soft);
       line-height: 1.8;
       font-size: 15px;
     }
 
-    .membership {
-      padding: 32px;
-      border: 1px solid var(--line);
-      background: linear-gradient(180deg, rgba(14,24,42,0.98), rgba(8,14,25,0.98));
-    }
-
-    .membership-points {
-      margin-top: 18px;
-      display: grid;
-      gap: 12px;
-    }
-
-    .membership-points div {
-      padding-left: 18px;
-      position: relative;
-      color: rgba(255,255,255,0.88);
-      line-height: 1.6;
-      font-size: 14px;
-    }
-
-    .membership-points div::before {
-      content: "";
-      position: absolute;
-      left: 0;
-      top: 9px;
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      background: var(--primary);
-    }
-
     .cta-btn {
-      width: 100%;
-      margin-top: 28px;
       padding: 16px 20px;
       border: none;
       border-radius: 18px;
@@ -638,12 +623,13 @@
         grid-template-columns: repeat(2, 1fr);
       }
 
-      .bottom-grid {
+      .feature-list,
+      .membership-points {
         grid-template-columns: 1fr;
       }
 
-      .feature-list {
-        grid-template-columns: 1fr;
+      .membership-wide-header {
+        flex-direction: column;
       }
     }
 
@@ -655,6 +641,16 @@
 
       .auth-buttons {
         justify-content: flex-start;
+      }
+
+      .main-nav {
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+
+      .main-nav a {
+        flex: unset;
+        min-width: 160px;
       }
     }
 
@@ -697,8 +693,8 @@
       }
 
       .features,
-      .membership,
-      .hero {
+      .hero,
+      .membership-wide {
         padding: 24px;
       }
 
@@ -709,6 +705,18 @@
 
       .top-header {
         align-items: flex-start;
+      }
+
+      .main-nav {
+        padding: 0 4px 8px;
+      }
+
+      .main-nav a {
+        width: 100%;
+      }
+
+      .membership-wide .cta-btn {
+        width: 100%;
       }
     }
   </style>
@@ -763,18 +771,6 @@
       </div>
 
       <div class="hero-right">
-        <div class="subscription-card">
-          <h3>Abonelik Bilgisi</h3>
-          <p>
-            Tek üyelikle farklı sınav türlerine ait içeriklere kolayca erişebilir, düzenli güncellenen kaynaklarla çalışabilirsiniz.
-          </p>
-          <div class="subscription-list">
-            <div>Video dersler ve çözüm içerikleri</div>
-            <div>IELTS, TOEFL ve YDS odaklı soru paketleri</div>
-            <div>Tek panel üzerinden hızlı erişim</div>
-          </div>
-        </div>
-
         <div class="hero-stats">
           <div class="stat-box">
             <div class="label">İçerik Türü</div>
@@ -784,11 +780,38 @@
             <div class="label">Erişim Modeli</div>
             <div class="value">Abonelik</div>
           </div>
+          <div class="stat-box">
+            <div class="label">Sınav Alanı</div>
+            <div class="value">IELTS / TOEFL / YDS</div>
+          </div>
+          <div class="stat-box">
+            <div class="label">İçerik Yapısı</div>
+            <div class="value">Video + Soru Seti</div>
+          </div>
         </div>
       </div>
     </section>
 
     <section class="cards" id="cards-container"></section>
+
+    <section class="membership-wide">
+      <div class="membership-wide-header">
+        <div>
+          <h3>Üyelik Bilgileri</h3>
+          <p>
+            Tek üyelikle farklı sınav türlerine ait içeriklere kolayca erişebilir, video dersler,
+            soru paketleri ve düzenli güncellenen kaynaklarla hazırlık sürecinizi tek panelden yönetebilirsiniz.
+          </p>
+        </div>
+        <button class="cta-btn" onclick="showMembershipInfo()">Aboneliği İncele</button>
+      </div>
+
+      <div class="membership-points">
+        <div>Video dersler ve çözüm içeriklerine tek üyelikle erişim</div>
+        <div>IELTS, TOEFL ve YDS odaklı soru setlerine düzenli erişim</div>
+        <div>Tek panel üzerinden sade ve hızlı kullanım deneyimi</div>
+      </div>
+    </section>
 
     <section class="bottom-grid">
       <div class="features">
@@ -807,19 +830,6 @@
             <p>Tek üyelikle farklı sınav türlerine hızlı erişim ve düzenli içerik güncellemesi.</p>
           </div>
         </div>
-      </div>
-
-      <div class="membership">
-        <h3>Tüm kaynaklara tek yerden erişin</h3>
-        <p>
-          Abonelik modeliyle soru bankaları, çözüm içerikleri ve video kaynakları düzenli olarak güncellenir.
-        </p>
-        <div class="membership-points">
-          <div>Tek panelden içerik takibi</div>
-          <div>Modern ve sade kullanıcı deneyimi</div>
-          <div>Sınavlara göre ayrılmış içerik yapısı</div>
-        </div>
-        <button class="cta-btn" onclick="showMembershipInfo()">Aboneliği İncele</button>
       </div>
     </section>
 
