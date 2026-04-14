@@ -6,20 +6,24 @@
   <title>Soru Bankası</title>
   <style>
     :root {
-      --bg: #f7f4ee;
-      --bg-soft: #fffdf9;
-      --surface: rgba(255, 255, 255, 0.82);
-      --surface-strong: #ffffff;
-      --text-main: #1f2937;
-      --text-soft: #6b7280;
-      --text-faint: #94a3b8;
-      --primary: #ea6b1f;
-      --primary-dark: #c5520d;
-      --secondary: #0d2f63;
-      --secondary-soft: #1d467f;
-      --line: #e8e1d4;
-      --shadow: 0 18px 45px rgba(13, 47, 99, 0.10);
-      --shadow-soft: 0 12px 30px rgba(0, 0, 0, 0.08);
+      --bg: #0a1220;
+      --bg-soft: #101a2d;
+      --bg-deep: #07101d;
+      --surface: rgba(18, 28, 48, 0.92);
+      --surface-2: rgba(24, 36, 60, 0.96);
+      --surface-3: rgba(13, 22, 38, 0.96);
+      --card-soft: #14233c;
+      --card-soft-2: #1a2d49;
+      --text-main: #f4f7fb;
+      --text-soft: #b8c4d6;
+      --text-faint: #7f91aa;
+      --primary: #f07a2b;
+      --primary-dark: #c95a12;
+      --secondary: #9db7db;
+      --line: rgba(255, 255, 255, 0.08);
+      --line-strong: rgba(240, 122, 43, 0.22);
+      --shadow: 0 22px 48px rgba(0, 0, 0, 0.34);
+      --shadow-soft: 0 14px 30px rgba(0, 0, 0, 0.24);
       --radius-xl: 30px;
       --radius-lg: 22px;
       --radius-md: 16px;
@@ -36,9 +40,9 @@
       min-height: 100vh;
       color: var(--text-main);
       background:
-        radial-gradient(circle at top left, rgba(234, 107, 31, 0.08), transparent 26%),
-        radial-gradient(circle at top right, rgba(13, 47, 99, 0.08), transparent 28%),
-        linear-gradient(180deg, #fcfaf6 0%, #f7f4ee 100%);
+        radial-gradient(circle at top left, rgba(240, 122, 43, 0.12), transparent 28%),
+        radial-gradient(circle at top right, rgba(65, 108, 170, 0.10), transparent 26%),
+        linear-gradient(180deg, #111c2f 0%, #0c1525 36%, #070f1b 100%);
     }
 
     a {
@@ -69,17 +73,18 @@
     }
 
     .logo-wrap {
-      width: 94px;
-      height: 94px;
+      width: 96px;
+      height: 96px;
       display: flex;
       align-items: center;
       justify-content: center;
       border-radius: 26px;
-      background: linear-gradient(180deg, #fff9f3, #ffffff);
-      border: 1px solid rgba(13, 47, 99, 0.08);
+      background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02));
+      border: 1px solid var(--line);
       box-shadow: var(--shadow-soft);
       flex-shrink: 0;
       overflow: hidden;
+      backdrop-filter: blur(10px);
     }
 
     .logo {
@@ -117,7 +122,7 @@
     .site-title {
       font-size: 36px;
       font-weight: 800;
-      color: var(--secondary);
+      color: var(--text-main);
       letter-spacing: -0.03em;
       line-height: 1.1;
     }
@@ -125,8 +130,8 @@
     .site-subtitle {
       color: var(--text-soft);
       font-size: 15px;
-      line-height: 1.5;
-      max-width: 540px;
+      line-height: 1.55;
+      max-width: 560px;
     }
 
     .auth-buttons {
@@ -149,25 +154,25 @@
     }
 
     .login-btn {
-      background: rgba(13, 47, 99, 0.06);
-      color: var(--secondary);
-      border: 1px solid rgba(13, 47, 99, 0.10);
+      background: rgba(255,255,255,0.05);
+      color: var(--text-main);
+      border: 1px solid var(--line);
     }
 
     .login-btn:hover {
-      background: rgba(13, 47, 99, 0.10);
+      background: rgba(255,255,255,0.10);
       transform: translateY(-1px);
     }
 
     .signup-btn {
-      background: linear-gradient(90deg, var(--primary), #ff8c47);
+      background: linear-gradient(90deg, var(--primary), #ff9a57);
       color: white;
-      box-shadow: 0 10px 24px rgba(234, 107, 31, 0.20);
+      box-shadow: 0 10px 24px rgba(240, 122, 43, 0.22);
     }
 
     .signup-btn:hover {
       transform: translateY(-1px);
-      opacity: 0.96;
+      opacity: 0.97;
     }
 
     .main-nav {
@@ -182,19 +187,21 @@
     .main-nav a {
       padding: 12px 18px;
       border-radius: 999px;
-      border: 1px solid rgba(13, 47, 99, 0.09);
-      background: rgba(255,255,255,0.72);
-      color: var(--secondary);
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.04);
+      color: var(--text-soft);
       font-size: 15px;
       font-weight: 700;
       transition: all 0.25s ease;
-      box-shadow: 0 6px 18px rgba(13, 47, 99, 0.04);
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
+      backdrop-filter: blur(8px);
     }
 
     .main-nav a:hover,
     .main-nav a.active {
-      background: var(--secondary);
+      background: var(--primary);
       color: #fff;
+      border-color: rgba(240, 122, 43, 0.35);
       transform: translateY(-1px);
     }
 
@@ -206,9 +213,9 @@
       align-items: stretch;
       margin-bottom: 38px;
       padding: 32px;
-      border: 1px solid rgba(13, 47, 99, 0.08);
+      border: 1px solid var(--line);
       border-radius: var(--radius-xl);
-      background: linear-gradient(180deg, rgba(255,255,255,0.92), rgba(255,255,255,0.82));
+      background: linear-gradient(180deg, rgba(17, 27, 46, 0.96), rgba(10, 18, 32, 0.98));
       box-shadow: var(--shadow);
       overflow: hidden;
     }
@@ -216,12 +223,12 @@
     .hero::after {
       content: "";
       position: absolute;
-      width: 320px;
-      height: 320px;
-      right: -80px;
-      top: -80px;
+      width: 360px;
+      height: 360px;
+      right: -90px;
+      top: -90px;
       border-radius: 50%;
-      background: radial-gradient(circle, rgba(234, 107, 31, 0.12), transparent 68%);
+      background: radial-gradient(circle, rgba(240, 122, 43, 0.14), transparent 68%);
       pointer-events: none;
     }
 
@@ -232,9 +239,9 @@
       display: inline-block;
       padding: 7px 13px;
       border-radius: 999px;
-      border: 1px solid rgba(234, 107, 31, 0.16);
-      background: rgba(234, 107, 31, 0.08);
-      color: var(--primary-dark);
+      border: 1px solid rgba(240, 122, 43, 0.20);
+      background: rgba(240, 122, 43, 0.10);
+      color: #ffb37d;
       font-size: 11px;
       font-weight: 800;
       letter-spacing: 0.12em;
@@ -253,9 +260,9 @@
       gap: 8px;
       padding: 8px 14px;
       border-radius: 999px;
-      border: 1px solid rgba(13, 47, 99, 0.10);
-      background: rgba(13, 47, 99, 0.05);
-      color: var(--secondary);
+      border: 1px solid rgba(255,255,255,0.08);
+      background: rgba(255,255,255,0.04);
+      color: #d8e4f5;
       font-size: 12px;
       margin-bottom: 18px;
       font-weight: 700;
@@ -272,7 +279,7 @@
       font-size: 50px;
       line-height: 1.08;
       margin-bottom: 18px;
-      color: var(--secondary);
+      color: var(--text-main);
       letter-spacing: -0.04em;
       max-width: 740px;
     }
@@ -305,9 +312,9 @@
     }
 
     .primary-link {
-      background: linear-gradient(90deg, var(--primary), #ff8a42);
+      background: linear-gradient(90deg, var(--primary), #ff9650);
       color: #fff;
-      box-shadow: 0 12px 24px rgba(234, 107, 31, 0.18);
+      box-shadow: 0 12px 24px rgba(240, 122, 43, 0.18);
     }
 
     .primary-link:hover {
@@ -315,14 +322,14 @@
     }
 
     .secondary-link {
-      background: #fff;
-      color: var(--secondary);
-      border: 1px solid rgba(13, 47, 99, 0.10);
+      background: rgba(255,255,255,0.04);
+      color: var(--text-main);
+      border: 1px solid var(--line);
     }
 
     .secondary-link:hover {
       transform: translateY(-2px);
-      background: #f8fbff;
+      background: rgba(255,255,255,0.08);
     }
 
     .hero-right {
@@ -340,9 +347,10 @@
       gap: 16px;
       padding: 20px;
       border-radius: 24px;
-      background: linear-gradient(135deg, rgba(13,47,99,0.96), rgba(29,70,127,0.92));
+      background: linear-gradient(135deg, rgba(22,36,60,0.98), rgba(16,28,47,0.98));
       color: white;
-      box-shadow: 0 18px 34px rgba(13, 47, 99, 0.18);
+      border: 1px solid rgba(255,255,255,0.06);
+      box-shadow: 0 18px 34px rgba(0, 0, 0, 0.22);
     }
 
     .hero-brand-logo {
@@ -350,7 +358,7 @@
       height: 78px;
       object-fit: contain;
       border-radius: 22px;
-      background: rgba(255,255,255,0.12);
+      background: rgba(255,255,255,0.08);
       padding: 8px;
       flex-shrink: 0;
     }
@@ -362,7 +370,7 @@
     }
 
     .hero-brand-card p {
-      color: rgba(255,255,255,0.82);
+      color: rgba(255,255,255,0.78);
       font-size: 14px;
       line-height: 1.6;
     }
@@ -376,9 +384,9 @@
     .stat-box {
       padding: 22px;
       border-radius: 24px;
-      border: 1px solid rgba(13, 47, 99, 0.08);
-      background: rgba(255,255,255,0.88);
-      box-shadow: 0 12px 24px rgba(13, 47, 99, 0.06);
+      border: 1px solid var(--line);
+      background: linear-gradient(180deg, rgba(22,35,58,0.96), rgba(14,24,40,0.96));
+      box-shadow: 0 12px 24px rgba(0, 0, 0, 0.16);
     }
 
     .stat-box .label {
@@ -391,7 +399,7 @@
     .stat-box .value {
       font-size: 30px;
       font-weight: 800;
-      color: var(--secondary);
+      color: #fff;
       line-height: 1.1;
     }
 
@@ -408,9 +416,9 @@
       min-height: 290px;
       padding: 24px;
       border-radius: 28px;
-      border: 1px solid rgba(13, 47, 99, 0.08);
-      background: linear-gradient(180deg, #ffffff, #fff8f2);
-      box-shadow: 0 18px 34px rgba(13, 47, 99, 0.08);
+      border: 1px solid var(--line);
+      background: linear-gradient(180deg, #14233c, #0f1c31);
+      box-shadow: 0 18px 34px rgba(0, 0, 0, 0.18);
       transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
       display: flex;
       flex-direction: column;
@@ -426,14 +434,14 @@
       right: -50px;
       top: -50px;
       border-radius: 50%;
-      background: radial-gradient(circle, rgba(234,107,31,0.16), transparent 66%);
+      background: radial-gradient(circle, rgba(240,122,43,0.16), transparent 66%);
       pointer-events: none;
     }
 
     .card:hover {
       transform: translateY(-7px);
-      border-color: rgba(234, 107, 31, 0.18);
-      box-shadow: 0 20px 40px rgba(13, 47, 99, 0.12);
+      border-color: var(--line-strong);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.26);
     }
 
     .card-top,
@@ -456,8 +464,8 @@
       align-items: center;
       justify-content: center;
       border-radius: 18px;
-      background: linear-gradient(135deg, rgba(234,107,31,0.12), rgba(13,47,99,0.08));
-      color: var(--secondary);
+      background: linear-gradient(135deg, rgba(240,107,31,0.18), rgba(255,255,255,0.06));
+      color: #fff;
       font-size: 28px;
       font-weight: 700;
     }
@@ -465,18 +473,19 @@
     .badge {
       padding: 7px 12px;
       border-radius: 999px;
-      background: rgba(13,47,99,0.06);
+      background: rgba(255,255,255,0.06);
       font-size: 11px;
       text-transform: uppercase;
       letter-spacing: 0.08em;
-      color: var(--secondary);
+      color: #dbe7f6;
       font-weight: 800;
+      border: 1px solid rgba(255,255,255,0.06);
     }
 
     .card h2 {
       font-size: 30px;
       margin-bottom: 14px;
-      color: var(--secondary);
+      color: #ffffff;
       letter-spacing: -0.02em;
     }
 
@@ -490,7 +499,7 @@
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      color: var(--primary);
+      color: #ffab72;
       font-weight: 800;
       font-size: 15px;
       transition: transform 0.25s ease;
@@ -514,15 +523,15 @@
 
     .features {
       padding: 32px;
-      border: 1px solid rgba(13, 47, 99, 0.08);
-      background: linear-gradient(180deg, #ffffff, #fffaf5);
+      border: 1px solid var(--line);
+      background: linear-gradient(180deg, #121f36, #0d1729);
     }
 
     .features h3,
     .membership h3 {
       font-size: 30px;
       margin-bottom: 24px;
-      color: var(--secondary);
+      color: #fff;
       letter-spacing: -0.02em;
     }
 
@@ -535,14 +544,14 @@
     .feature-item {
       padding: 22px;
       border-radius: 22px;
-      border: 1px solid rgba(13, 47, 99, 0.08);
-      background: #ffffff;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.03);
     }
 
     .feature-item h4 {
       font-size: 20px;
       margin-bottom: 10px;
-      color: var(--secondary);
+      color: #ffffff;
     }
 
     .feature-item p,
@@ -554,16 +563,8 @@
 
     .membership {
       padding: 32px;
-      border: 1px solid rgba(13, 47, 99, 0.08);
-      background: linear-gradient(180deg, rgba(13,47,99,0.98), rgba(11,35,73,0.98));
-    }
-
-    .membership h3 {
-      color: white;
-    }
-
-    .membership p {
-      color: rgba(255,255,255,0.82);
+      border: 1px solid var(--line);
+      background: linear-gradient(180deg, rgba(14,24,42,0.98), rgba(8,14,25,0.98));
     }
 
     .membership-points {
@@ -597,13 +598,13 @@
       padding: 16px 20px;
       border: none;
       border-radius: 18px;
-      background: linear-gradient(90deg, var(--primary), #ff8a42);
+      background: linear-gradient(90deg, var(--primary), #ff9550);
       color: white;
       font-size: 16px;
       font-weight: 800;
       cursor: pointer;
       transition: transform 0.25s ease, opacity 0.25s ease;
-      box-shadow: 0 12px 24px rgba(234, 107, 31, 0.18);
+      box-shadow: 0 12px 24px rgba(240, 122, 43, 0.18);
     }
 
     .cta-btn:hover {
@@ -745,10 +746,10 @@
           <span class="tag-dot"></span>
           Abonelik Tabanlı Soru Bankası
         </div>
-        <h1>Sınava hazırlanırken ihtiyacınız olan içerikler şimdi daha güçlü bir tasarımla tek platformda.</h1>
+        <h1>Sınava hazırlanırken ihtiyacınız olan içerikler şimdi daha güçlü ve daha koyu bir tasarımla tek platformda.</h1>
         <p>
           Eğitim odaklı modern yapımızla video anlatımlar, premium soru paketleri ve hedefe yönelik kaynakları
-          tek ekranda sunuyoruz. Yeni logo diliyle daha kurumsal, daha net ve daha güven veren bir görünüm elde ettik.
+          tek ekranda sunuyoruz. Koyu tonlar sayesinde daha güçlü bir kontrast, daha modern bir görünüm ve daha kurumsal bir etki elde ettik.
         </p>
         <div class="hero-actions">
           <a class="primary-link" href="soru-setleri.html">Soru Setlerini İncele</a>
@@ -760,8 +761,8 @@
         <div class="hero-brand-card">
           <img src="a_vector_style_digital_illustration_logo_features.png" alt="Platform Logosu" class="hero-brand-logo">
           <div>
-            <h3>Kurumsal ve sıcak kimlik</h3>
-            <p>Kep, kalem ve soru işaretleriyle desteklenen modern çizgi tasarım; eğitim odağını ilk bakışta hissettirir.</p>
+            <h3>Kurumsal ve güçlü kimlik</h3>
+            <p>Kep, kalem ve soru işaretleriyle desteklenen modern çizgi tasarım; eğitim odağını ilk bakışta net biçimde hissettirir.</p>
           </div>
         </div>
 
