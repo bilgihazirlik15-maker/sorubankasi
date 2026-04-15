@@ -175,36 +175,30 @@
 
     .main-nav {
       display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 18px;
-      width: 100%;
-      margin: 12px 0 28px;
-      padding: 0 14px 8px;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 26px;
     }
 
     .main-nav a {
-      flex: 1;
-      text-align: center;
-      padding: 12px 14px;
+      padding: 12px 18px;
       border-radius: 999px;
-      border: 1px solid var(--line);
+      border: 1px solid rgba(255,255,255,0.08);
       background: rgba(255,255,255,0.04);
-      color: var(--text-soft);
+      color: #b8c4d6;
       font-size: 14px;
       font-weight: 700;
       transition: all 0.25s ease;
-      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
-      backdrop-filter: blur(8px);
-      white-space: nowrap;
+      min-width: 140px;
+      text-align: center;
     }
 
     .main-nav a:hover,
     .main-nav a.active {
-      background: var(--primary);
+      background: #f07a2b;
       color: #fff;
-      border-color: rgba(240, 122, 43, 0.35);
-      transform: translateY(-1px);
+      border-color: rgba(240,122,43,0.35);
     }
 
     .hero {
@@ -652,6 +646,36 @@
       font-size: 14px;
     }
 
+    .admin-access {
+      margin-top: 30px;
+      display: flex;
+      justify-content: center;
+    }
+
+    .admin-access-link {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 12px 20px;
+      border-radius: 999px;
+      border: 1px solid rgba(240,122,43,0.28);
+      background: rgba(240,122,43,0.10);
+      color: #ffcfad;
+      font-size: 13px;
+      font-weight: 800;
+      letter-spacing: 0.03em;
+      transition: all 0.25s ease;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.18);
+    }
+
+    .admin-access-link:hover {
+      background: rgba(240,122,43,0.18);
+      color: #fff;
+      transform: translateY(-1px);
+      box-shadow: 0 12px 24px rgba(240,122,43,0.16);
+    }
+
     @media (max-width: 1100px) {
       .cards {
         grid-template-columns: repeat(2, 1fr);
@@ -675,16 +699,6 @@
 
       .auth-buttons {
         justify-content: flex-start;
-      }
-
-      .main-nav {
-        flex-wrap: wrap;
-        justify-content: center;
-      }
-
-      .main-nav a {
-        flex: unset;
-        min-width: 160px;
       }
     }
 
@@ -722,65 +736,25 @@
         grid-template-columns: 1fr;
       }
 
-      .card h2 {
-        font-size: 22px;
-      }
-
       .features,
       .membership-wide {
         padding: 24px;
       }
 
-      .top-header {
-        align-items: flex-start;
-      }
-
-      .main-nav {
-        padding: 0 4px 8px;
-      }
-
       .main-nav a {
-        width: 100%;
-      }
-
-      .membership-wide .cta-btn {
-        width: 100%;
+        min-width: 120px;
       }
     }
-    .admin-access {
-  margin-top: 30px;
-  display: flex;
-  justify-content: center;
-}
-
-.admin-access-link {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  padding: 12px 20px;
-  border-radius: 999px;
-  border: 1px solid rgba(240,122,43,0.28);
-  background: rgba(240,122,43,0.10);
-  color: #ffcfad;
-  font-size: 13px;
-  font-weight: 800;
-  letter-spacing: 0.03em;
-  transition: all 0.25s ease;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.18);
-}
-
-.admin-access-link:hover {
-  background: rgba(240,122,43,0.18);
-  color: #fff;
-  transform: translateY(-1px);
-}
   </style>
 </head>
 <body>
   <div class="container">
-    <div id="site-header"></div>
-            <div class="title-group">
+    <div class="top-bar">
+      <header class="top-header">
+        <div class="logo-wrap">
+          <img src="logo.png" alt="Soru Bankası Logosu" class="logo">
+        </div>
+        <div class="title-group">
           <div class="eyebrow">Dijital Eğitim Platformu</div>
           <div class="site-title">Sınavlara beraber hazırlanalım</div>
           <div class="site-subtitle">
@@ -795,7 +769,13 @@
       </div>
     </div>
 
-    
+    <nav class="main-nav">
+      <a href="index.html" class="active">Ana Sayfa</a>
+      <a href="biz-kimiz.html">Biz Kimiz</a>
+      <a href="sinavlar.html">Sınavlar</a>
+      <a href="videolar.html">Videolar</a>
+      <a href="soru-setleri.html">Soru Setleri</a>
+    </nav>
 
     <section class="hero">
       <div class="hero-inner">
@@ -862,11 +842,10 @@
     <div class="footer-note">
       Modern tasarım dili ile güçlendirilmiş eğitim platformu ana sayfası
     </div>
+
     <div class="admin-access">
-  <a href="#" class="admin-access-link" onclick="openAdminPanel(event)">
-    Admin Video Paneli
-  </a>
-</div>
+      <a href="#" class="admin-access-link" onclick="openAdminPanel(event)">Admin Video Paneli</a>
+    </div>
   </div>
 
   <script>
@@ -938,25 +917,22 @@
     function goToSignup() {
       window.location.href = "uye-ol.html";
     }
+
+    function openAdminPanel(event) {
+      event.preventDefault();
+
+      const username = prompt("Kullanıcı adını giriniz:");
+      if (username === null) return;
+
+      const password = prompt("Şifreyi giriniz:");
+      if (password === null) return;
+
+      if (username === "admin" && password === "Soru2026!") {
+        window.location.href = "admin-videolar.html";
+      } else {
+        alert("Kullanıcı adı veya şifre hatalı.");
+      }
+    }
   </script>
-
-<script>
-function openAdminPanel(event) {
-  event.preventDefault();
-
-  const username = prompt("Kullanıcı adını giriniz:");
-  if (username === null) return;
-
-  const password = prompt("Şifreyi giriniz:");
-  if (password === null) return;
-
-  if (username === "admin" && password === "Soru2026!") {
-    window.location.href = "admin-videolar.html";
-  } else {
-    alert("Kullanıcı adı veya şifre hatalı.");
-  }
-}
-</script>
-<script src="header.js"></script>
 </body>
 </html>
