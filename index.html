@@ -232,47 +232,12 @@
       pointer-events: none;
     }
 
-    .mini-membership {
-      position: absolute;
-      top: 22px;
-      left: 24px;
-      display: inline-block;
-      padding: 7px 13px;
-      border-radius: 999px;
-      border: 1px solid rgba(240, 122, 43, 0.20);
-      background: rgba(240, 122, 43, 0.10);
-      color: #ffb37d;
-      font-size: 11px;
-      font-weight: 800;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-    }
-
     .hero-left {
-      padding-top: 28px;
       position: relative;
       z-index: 1;
-    }
-
-    .tag {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 8px 14px;
-      border-radius: 999px;
-      border: 1px solid rgba(255,255,255,0.08);
-      background: rgba(255,255,255,0.04);
-      color: #d8e4f5;
-      font-size: 12px;
-      margin-bottom: 18px;
-      font-weight: 700;
-    }
-
-    .tag-dot {
-      width: 7px;
-      height: 7px;
-      border-radius: 50%;
-      background: var(--primary);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
     }
 
     .hero h1 {
@@ -374,7 +339,7 @@
       display: grid;
       grid-template-columns: repeat(4, 1fr);
       gap: 24px;
-      margin-bottom: 28px;
+      margin-bottom: 24px;
     }
 
     .card {
@@ -478,11 +443,48 @@
 
     .membership-wide {
       margin-bottom: 40px;
-      padding: 30px 32px;
+      padding: 26px 28px;
       border-radius: var(--radius-xl);
       border: 1px solid var(--line);
       background: linear-gradient(180deg, rgba(14,24,42,0.98), rgba(8,14,25,0.98));
       box-shadow: var(--shadow-soft);
+    }
+
+    .membership-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 7px 13px;
+      border-radius: 999px;
+      border: 1px solid rgba(240, 122, 43, 0.20);
+      background: rgba(240, 122, 43, 0.10);
+      color: #ffb37d;
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 14px;
+    }
+
+    .membership-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 14px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.08);
+      background: rgba(255,255,255,0.04);
+      color: #d8e4f5;
+      font-size: 12px;
+      margin-bottom: 16px;
+      font-weight: 700;
+    }
+
+    .membership-tag-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--primary);
     }
 
     .membership-wide-header {
@@ -490,11 +492,11 @@
       align-items: flex-start;
       justify-content: space-between;
       gap: 18px;
-      margin-bottom: 20px;
+      margin-bottom: 18px;
     }
 
     .membership-wide h3 {
-      font-size: 24px;
+      font-size: 21px;
       color: #fff;
       letter-spacing: -0.01em;
       margin-bottom: 10px;
@@ -502,8 +504,8 @@
 
     .membership-wide p {
       color: var(--text-soft);
-      line-height: 1.8;
-      font-size: 15px;
+      line-height: 1.75;
+      font-size: 14px;
       max-width: 760px;
     }
 
@@ -590,7 +592,7 @@
     }
 
     .cta-btn {
-      padding: 16px 20px;
+      padding: 15px 18px;
       border: none;
       border-radius: 18px;
       background: linear-gradient(90deg, var(--primary), #ff9550);
@@ -698,11 +700,6 @@
         padding: 24px;
       }
 
-      .mini-membership {
-        top: 14px;
-        left: 14px;
-      }
-
       .top-header {
         align-items: flex-start;
       }
@@ -752,13 +749,7 @@
     </nav>
 
     <section class="hero">
-      <div class="mini-membership">Üyelik</div>
-
       <div class="hero-left">
-        <div class="tag">
-          <span class="tag-dot"></span>
-          Abonelik Tabanlı Soru Bankası
-        </div>
         <h1>Sınava hazırlanırken ihtiyacınız olan içerikler tek platformda.</h1>
         <p>
           Video anlatımlar, premium soru paketleri ve hedefe yönelik kaynaklarla daha düzenli,
@@ -795,6 +786,12 @@
     <section class="cards" id="cards-container"></section>
 
     <section class="membership-wide">
+      <div class="membership-label">Üyelik</div>
+      <div class="membership-tag">
+        <span class="membership-tag-dot"></span>
+        Abonelik Tabanlı Soru Bankası
+      </div>
+
       <div class="membership-wide-header">
         <div>
           <h3>Üyelik Bilgileri</h3>
