@@ -747,6 +747,34 @@
         width: 100%;
       }
     }
+    .admin-access {
+  margin-top: 30px;
+  display: flex;
+  justify-content: center;
+}
+
+.admin-access-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px 20px;
+  border-radius: 999px;
+  border: 1px solid rgba(240,122,43,0.28);
+  background: rgba(240,122,43,0.10);
+  color: #ffcfad;
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 0.03em;
+  transition: all 0.25s ease;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.18);
+}
+
+.admin-access-link:hover {
+  background: rgba(240,122,43,0.18);
+  color: #fff;
+  transform: translateY(-1px);
+}
   </style>
 </head>
 <body>
@@ -844,6 +872,11 @@
     <div class="footer-note">
       Modern tasarım dili ile güçlendirilmiş eğitim platformu ana sayfası
     </div>
+    <div class="admin-access">
+  <a href="#" class="admin-access-link" onclick="openAdminPanel(event)">
+    Admin Video Paneli
+  </a>
+</div>
   </div>
 
   <script>
@@ -916,5 +949,23 @@
       window.location.href = "uye-ol.html";
     }
   </script>
+
+<script>
+function openAdminPanel(event) {
+  event.preventDefault();
+
+  const username = prompt("Kullanıcı adını giriniz:");
+  if (username === null) return;
+
+  const password = prompt("Şifreyi giriniz:");
+  if (password === null) return;
+
+  if (username === "admin" && password === "Soru2026!") {
+    window.location.href = "admin-videolar.html";
+  } else {
+    alert("Kullanıcı adı veya şifre hatalı.");
+  }
+}
+</script>
 </body>
 </html>
