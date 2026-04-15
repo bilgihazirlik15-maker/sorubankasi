@@ -266,12 +266,43 @@
   transform: translateY(-1px);
 }
 
+.main-nav {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 24px;
+}
 
+.main-nav a {
+  padding: 12px 18px;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,0.08);
+  background: rgba(255,255,255,0.04);
+  color: #b8c4d6;
+  font-size: 14px;
+  font-weight: 700;
+  transition: all 0.25s ease;
+}
+
+.main-nav a:hover,
+.main-nav a.active {
+  background: #f07a2b;
+  color: #fff;
+  border-color: rgba(240,122,43,0.35);
+}
     
   </style>
 </head>
 <body>
   <div class="container">
+    <nav class="main-nav">
+  <a href="index.html">Ana Sayfa</a>
+  <a href="biz-kimiz.html">Biz Kimiz</a>
+  <a href="sinavlar.html">Sınavlar</a>
+  <a href="videolar.html" class="active">Videolar</a>
+  <a href="soru-setleri.html">Soru Setleri</a>
+</nav>
    <div class="top-return">
   <a href="index.html" class="return-link">← Ana Sayfa</a>
 </div>
