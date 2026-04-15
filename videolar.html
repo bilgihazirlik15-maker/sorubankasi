@@ -21,6 +21,8 @@
       --radius-xl: 28px;
       --radius-lg: 22px;
       --radius-md: 16px;
+      --card-bg: linear-gradient(180deg, rgba(60, 82, 118, 0.92), rgba(42, 60, 92, 0.92));
+      --card-bg-hover: linear-gradient(180deg, rgba(72, 98, 138, 0.96), rgba(48, 70, 106, 0.96));
     }
 
     * {
@@ -60,79 +62,81 @@
       align-items: center;
       justify-content: space-between;
       gap: 24px;
-      margin-bottom: 14px;
-      padding: 10px 4px 6px;
+      margin-bottom: 18px;
+      padding: 12px 4px 8px;
     }
 
     .top-header {
       display: flex;
       align-items: center;
-      gap: 16px;
+      gap: 18px;
       min-width: 0;
     }
 
     .logo-wrap {
-      width: 88px;
-      height: 88px;
+      width: 118px;
+      height: 118px;
       display: flex;
       align-items: center;
       justify-content: center;
-      border-radius: 999px;
-      background: linear-gradient(180deg, rgba(255,255,255,0.07), rgba(255,255,255,0.03));
-      border: 1px solid var(--line);
-      box-shadow: var(--shadow-soft);
+      border-radius: 50%;
+      background: #000;
+      border: 1px solid rgba(255,255,255,0.12);
+      box-shadow:
+        0 18px 34px rgba(0, 0, 0, 0.28),
+        0 0 0 1px rgba(240,122,43,0.10) inset;
       flex-shrink: 0;
       overflow: hidden;
-      backdrop-filter: blur(10px);
-      padding: 12px;
+      padding: 0;
     }
 
     .logo {
       width: 100%;
       height: 100%;
-      object-fit: contain;
+      object-fit: cover;
       object-position: center;
       display: block;
+      border-radius: 50%;
     }
 
     .title-group {
       display: flex;
       flex-direction: column;
-      gap: 6px;
+      gap: 8px;
     }
 
     .eyebrow {
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      color: var(--primary);
-      font-size: 12px;
+      color: #ffb37d;
+      font-size: 11px;
       font-weight: 800;
-      letter-spacing: 0.12em;
+      letter-spacing: 0.14em;
       text-transform: uppercase;
     }
 
     .eyebrow::before {
       content: "";
-      width: 24px;
+      width: 26px;
       height: 2px;
       border-radius: 999px;
       background: var(--primary);
     }
 
     .site-title {
-      font-size: 33px;
+      font-size: 36px;
       font-weight: 800;
       color: var(--text-main);
-      letter-spacing: -0.02em;
-      line-height: 1.1;
+      letter-spacing: -0.03em;
+      line-height: 1.05;
     }
 
     .site-subtitle {
       color: var(--text-soft);
-      font-size: 15px;
-      line-height: 1.55;
-      max-width: 560px;
+      font-size: 14px;
+      line-height: 1.65;
+      max-width: 620px;
     }
 
     .auth-buttons {
@@ -218,11 +222,12 @@
       align-items: stretch;
       margin-bottom: 28px;
       padding: 32px;
-      border: 1px solid var(--line);
-      border-radius: var(--radius-xl);
-      background: linear-gradient(180deg, rgba(17, 27, 46, 0.96), rgba(10, 18, 32, 0.98));
+      border: 1px solid rgba(255,255,255,0.10);
+      border-radius: 28px;
+      background: var(--card-bg);
       box-shadow: var(--shadow);
       overflow: hidden;
+      transition: all 0.25s ease;
     }
 
     .hero-video::after {
@@ -235,6 +240,15 @@
       border-radius: 50%;
       background: radial-gradient(circle, rgba(240, 122, 43, 0.14), transparent 68%);
       pointer-events: none;
+    }
+
+    .hero-video:hover {
+      transform: translateY(-4px);
+      border-color: rgba(240,122,43,0.35);
+      background: var(--card-bg-hover);
+      box-shadow:
+        0 25px 45px rgba(0,0,0,0.35),
+        0 0 20px rgba(240,122,43,0.10);
     }
 
     .hero-left,
@@ -276,7 +290,7 @@
     .hero-left p {
       font-size: 16px;
       line-height: 1.75;
-      color: var(--text-soft);
+      color: #d7e2f0;
       max-width: 680px;
       margin-bottom: 22px;
     }
@@ -290,9 +304,9 @@
     .meta-chip {
       padding: 10px 14px;
       border-radius: 999px;
-      border: 1px solid var(--line);
+      border: 1px solid rgba(255,255,255,0.08);
       background: rgba(255,255,255,0.04);
-      color: var(--text-soft);
+      color: #dfe8f5;
       font-size: 13px;
       font-weight: 700;
     }
@@ -300,8 +314,8 @@
     .featured-card {
       padding: 20px;
       border-radius: 24px;
-      border: 1px solid var(--line);
-      background: linear-gradient(180deg, rgba(22,35,58,0.96), rgba(14,24,40,0.96));
+      border: 1px solid rgba(255,255,255,0.10);
+      background: rgba(20, 30, 50, 0.35);
       box-shadow: 0 12px 24px rgba(0, 0, 0, 0.16);
       display: flex;
       flex-direction: column;
@@ -316,7 +330,7 @@
     }
 
     .featured-card p {
-      color: var(--text-soft);
+      color: #d7e2f0;
       font-size: 15px;
       line-height: 1.7;
     }
@@ -347,8 +361,8 @@
       margin-bottom: 24px;
       padding: 20px;
       border-radius: 24px;
-      border: 1px solid var(--line);
-      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.10);
+      background: var(--card-bg);
       box-shadow: var(--shadow-soft);
     }
 
@@ -388,14 +402,14 @@
       width: 100%;
       padding: 13px 16px;
       border-radius: 16px;
-      border: 1px solid var(--line);
-      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.10);
+      background: rgba(8, 15, 28, 0.42);
       color: var(--text-main);
       outline: none;
     }
 
     .search-box input::placeholder {
-      color: var(--text-faint);
+      color: #9eb0c7;
     }
 
     .content-grid {
@@ -414,16 +428,19 @@
     .video-card {
       overflow: hidden;
       border-radius: 24px;
-      border: 1px solid var(--line);
-      background: linear-gradient(180deg, #14233c, #0f1c31);
+      border: 1px solid rgba(255,255,255,0.10);
+      background: var(--card-bg);
       box-shadow: 0 18px 34px rgba(0, 0, 0, 0.18);
-      transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+      transition: all 0.25s ease;
     }
 
     .video-card:hover {
       transform: translateY(-6px);
-      border-color: var(--line-strong);
-      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.26);
+      border-color: rgba(240,122,43,0.35);
+      background: var(--card-bg-hover);
+      box-shadow:
+        0 25px 45px rgba(0,0,0,0.35),
+        0 0 20px rgba(240,122,43,0.12);
     }
 
     .video-frame {
@@ -481,7 +498,7 @@
     }
 
     .video-desc {
-      color: var(--text-soft);
+      color: #d7e2f0;
       font-size: 15px;
       line-height: 1.75;
       margin-bottom: 16px;
@@ -496,7 +513,7 @@
     }
 
     .video-level {
-      color: var(--text-faint);
+      color: #c7d4e6;
       font-size: 13px;
       font-weight: 700;
     }
@@ -519,8 +536,8 @@
     .side-card {
       padding: 22px;
       border-radius: 24px;
-      border: 1px solid var(--line);
-      background: linear-gradient(180deg, rgba(22,35,58,0.96), rgba(14,24,40,0.96));
+      border: 1px solid rgba(255,255,255,0.10);
+      background: var(--card-bg);
       box-shadow: 0 12px 24px rgba(0, 0, 0, 0.16);
     }
 
@@ -555,7 +572,7 @@
 
     .playlist-item span,
     .info-item span {
-      color: var(--text-soft);
+      color: #d7e2f0;
       font-size: 14px;
       line-height: 1.6;
     }
@@ -566,7 +583,7 @@
       border-radius: 24px;
       border: 1px dashed rgba(255,255,255,0.14);
       background: rgba(255,255,255,0.03);
-      color: var(--text-soft);
+      color: #d7e2f0;
       text-align: center;
       font-size: 15px;
       line-height: 1.7;
@@ -630,8 +647,8 @@
       }
 
       .logo-wrap {
-        width: 76px;
-        height: 76px;
+        width: 96px;
+        height: 96px;
       }
 
       .site-title {
@@ -675,7 +692,7 @@
           <img src="logo.png" alt="Soru Bankası Logosu" class="logo">
         </div>
         <div class="title-group">
-          <div class="eyebrow">Modern Eğitim Platformu</div>
+          <div class="eyebrow">Dijital Eğitim Platformu</div>
           <div class="site-title">Sınavlara beraber hazırlanalım</div>
           <div class="site-subtitle">
             Video dersler, konu anlatımları ve sınav odaklı içeriklerle hedeflerinize daha planlı ilerleyin.
@@ -711,16 +728,16 @@
         <div class="hero-meta">
           <div class="meta-chip">Youtube Entegrasyonu</div>
           <div class="meta-chip">Kategori Bazlı Filtreleme</div>
-          <div class="meta-chip">Admin Sayfasına Uygun Altyapı</div>
+          <div class="meta-chip">Admin Paneline Bağlı</div>
         </div>
       </div>
 
       <div class="hero-right">
         <div class="featured-card">
-          <h3>Öne Çıkan Video Alanı</h3>
+          <h3>Güncel video alanı</h3>
           <p>
-            Bu sayfa yapısı, daha sonra admin panelinden yeni video ekleyebileceğin bir sisteme uygun olacak şekilde hazırlandı.
-            Şimdilik örnek Youtube videoları ile çalışıyor.
+            Bu sayfa önce admin paneline girilen videoları gösterir. Eğer admin panelinden eklenmiş video yoksa,
+            örnek videolar otomatik olarak görünür.
           </p>
           <div class="featured-badges">
             <div class="featured-badge">IELTS</div>
@@ -774,19 +791,19 @@
         </div>
 
         <div class="side-card">
-          <h3>Bu Sayfa Ne İçin Hazırlandı?</h3>
+          <h3>Bu Sayfa Nasıl Çalışıyor?</h3>
           <div class="info-list">
             <div class="info-item">
-              <strong>Kolay Gezinme</strong>
-              <span>Kategorilere göre ayrılmış video yapısı sayesinde öğrenciler içeriklere daha hızlı ulaşır.</span>
+              <strong>Admin bağlantısı</strong>
+              <span>Admin panelinden eklenen videolar burada otomatik görünür.</span>
             </div>
             <div class="info-item">
-              <strong>Youtube Entegrasyonu</strong>
-              <span>Videolar doğrudan sayfa içinde izlenebilir.</span>
+              <strong>Kategori filtreleme</strong>
+              <span>Videolar kategoriye göre süzülür, arama kutusu ile başlıkta arama yapılır.</span>
             </div>
             <div class="info-item">
-              <strong>Admin Sayfasına Uygun</strong>
-              <span>Bir sonraki adımda video ekleme ve düzenleme için yönetim paneli eklenebilir.</span>
+              <strong>Kolay geliştirme</strong>
+              <span>Bir sonraki aşamada soru setleri için de aynı mantık kurulabilir.</span>
             </div>
           </div>
         </div>
@@ -794,12 +811,14 @@
     </section>
 
     <div class="footer-note">
-      Video içerik sayfası · Ana tasarım diliyle uyumlu modern görünüm
+      Video içerik sayfası · Admin paneline bağlı sürüm
     </div>
   </div>
 
   <script>
-    const videos = [
+    const STORAGE_KEY = "adminVideos";
+
+    const fallbackVideos = [
       {
         title: "IELTS Writing Task 2 Giriş Teknikleri",
         description: "IELTS Writing Task 2 için etkili giriş paragrafı kurma yöntemleri ve örnek yapı incelemesi.",
@@ -835,24 +854,6 @@
         duration: "14 dk",
         level: "A2 - B1",
         youtubeId: "jzG7F712wLI"
-      },
-      {
-        title: "IELTS Speaking Band Yükseltme İpuçları",
-        description: "Speaking bölümünde daha akıcı ve daha organize cevaplar vermek için pratik öneriler.",
-        category: "ielts",
-        categoryLabel: "IELTS",
-        duration: "11 dk",
-        level: "B1 - B2",
-        youtubeId: "V7z7BAZdt2M"
-      },
-      {
-        title: "TOEFL Listening Not Alma Teknikleri",
-        description: "Listening sırasında etkili not alma ve ana fikri kaçırmadan takip etme yöntemleri.",
-        category: "toefl",
-        categoryLabel: "TOEFL",
-        duration: "13 dk",
-        level: "B1 - B2",
-        youtubeId: "lH2K2t8n7Ik"
       }
     ];
 
@@ -863,7 +864,25 @@
 
     let activeCategory = "all";
 
+    function getStoredVideos() {
+      try {
+        const raw = localStorage.getItem(STORAGE_KEY);
+        if (!raw) return [];
+        const parsed = JSON.parse(raw);
+        return Array.isArray(parsed) ? parsed : [];
+      } catch (error) {
+        console.error("Videolar okunamadı:", error);
+        return [];
+      }
+    }
+
+    function getAllVideos() {
+      const adminVideos = getStoredVideos();
+      return adminVideos.length > 0 ? adminVideos : fallbackVideos;
+    }
+
     function renderVideos() {
+      const videos = getAllVideos();
       const searchTerm = searchInput.value.trim().toLowerCase();
 
       const filteredVideos = videos.filter(video => {
@@ -903,7 +922,7 @@
             <p class="video-desc">${video.description}</p>
             <div class="video-footer">
               <div class="video-level">Seviye: ${video.level}</div>
-              <a class="watch-link" href="https://www.youtube.com/watch?v=${video.youtubeId}" target="_blank">
+              <a class="watch-link" href="https://www.youtube.com/watch?v=${video.youtubeId}" target="_blank" rel="noopener noreferrer">
                 Youtube'da aç →
               </a>
             </div>
