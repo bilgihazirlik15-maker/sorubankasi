@@ -1,0 +1,912 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Soru Bankası</title>
+  <style>
+    :root {
+      --bg: #0a1220;
+      --bg-soft: #101a2d;
+      --bg-deep: #07101d;
+      --text-main: #f4f7fb;
+      --text-soft: #b8c4d6;
+      --text-faint: #7f91aa;
+      --primary: #f07a2b;
+      --primary-dark: #c95a12;
+      --line: rgba(255, 255, 255, 0.08);
+      --line-strong: rgba(240, 122, 43, 0.22);
+      --shadow: 0 22px 48px rgba(0, 0, 0, 0.34);
+      --shadow-soft: 0 14px 30px rgba(0, 0, 0, 0.24);
+      --radius-xl: 28px;
+      --radius-lg: 22px;
+      --radius-md: 16px;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Inter, Arial, Helvetica, sans-serif;
+      min-height: 100vh;
+      color: var(--text-main);
+      background:
+        radial-gradient(circle at top left, rgba(240, 122, 43, 0.12), transparent 28%),
+        radial-gradient(circle at top right, rgba(65, 108, 170, 0.10), transparent 26%),
+        linear-gradient(180deg, #111c2f 0%, #0c1525 36%, #070f1b 100%);
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 26px 24px 42px;
+    }
+
+    .top-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      margin-bottom: 14px;
+      padding: 10px 4px 6px;
+    }
+
+    .top-header {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      min-width: 0;
+    }
+
+    .logo-wrap {
+      width: 88px;
+      height: 88px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 999px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.07), rgba(255,255,255,0.03));
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow-soft);
+      flex-shrink: 0;
+      overflow: hidden;
+      backdrop-filter: blur(10px);
+      padding: 12px;
+    }
+
+    .logo {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      object-position: center;
+      display: block;
+    }
+
+    .title-group {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--primary);
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: 24px;
+      height: 2px;
+      border-radius: 999px;
+      background: var(--primary);
+    }
+
+    .site-title {
+      font-size: 33px;
+      font-weight: 800;
+      color: var(--text-main);
+      letter-spacing: -0.02em;
+      line-height: 1.1;
+    }
+
+    .site-subtitle {
+      color: var(--text-soft);
+      font-size: 15px;
+      line-height: 1.55;
+      max-width: 560px;
+    }
+
+    .auth-buttons {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+      flex-shrink: 0;
+    }
+
+    .login-btn,
+    .signup-btn {
+      padding: 12px 18px;
+      border-radius: 999px;
+      font-size: 14px;
+      font-weight: 700;
+      transition: all 0.25s ease;
+      cursor: pointer;
+      border: none;
+    }
+
+    .login-btn {
+      background: rgba(255,255,255,0.05);
+      color: var(--text-main);
+      border: 1px solid var(--line);
+    }
+
+    .login-btn:hover {
+      background: rgba(255,255,255,0.10);
+      transform: translateY(-1px);
+    }
+
+    .signup-btn {
+      background: linear-gradient(90deg, var(--primary), #ff9a57);
+      color: white;
+      box-shadow: 0 10px 24px rgba(240, 122, 43, 0.22);
+    }
+
+    .signup-btn:hover {
+      transform: translateY(-1px);
+      opacity: 0.97;
+    }
+
+    .main-nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      width: 100%;
+      margin: 12px 0 28px;
+      padding: 0 14px 8px;
+    }
+
+    .main-nav a {
+      flex: 1;
+      text-align: center;
+      padding: 12px 14px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.04);
+      color: var(--text-soft);
+      font-size: 14px;
+      font-weight: 700;
+      transition: all 0.25s ease;
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
+      backdrop-filter: blur(8px);
+      white-space: nowrap;
+    }
+
+    .main-nav a:hover,
+    .main-nav a.active {
+      background: var(--primary);
+      color: #fff;
+      border-color: rgba(240, 122, 43, 0.35);
+      transform: translateY(-1px);
+    }
+
+    .hero {
+      position: relative;
+      display: grid;
+      grid-template-columns: 1.35fr 0.9fr;
+      gap: 24px;
+      align-items: stretch;
+      margin-bottom: 38px;
+      padding: 32px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius-xl);
+      background: linear-gradient(180deg, rgba(17, 27, 46, 0.96), rgba(10, 18, 32, 0.98));
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      width: 360px;
+      height: 360px;
+      right: -90px;
+      top: -90px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(240, 122, 43, 0.14), transparent 68%);
+      pointer-events: none;
+    }
+
+    .mini-membership {
+      position: absolute;
+      top: 22px;
+      left: 24px;
+      display: inline-block;
+      padding: 7px 13px;
+      border-radius: 999px;
+      border: 1px solid rgba(240, 122, 43, 0.20);
+      background: rgba(240, 122, 43, 0.10);
+      color: #ffb37d;
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .hero-left {
+      padding-top: 28px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 14px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.08);
+      background: rgba(255,255,255,0.04);
+      color: #d8e4f5;
+      font-size: 12px;
+      margin-bottom: 18px;
+      font-weight: 700;
+    }
+
+    .tag-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--primary);
+    }
+
+    .hero h1 {
+      font-size: 34px;
+      line-height: 1.2;
+      margin-bottom: 16px;
+      color: var(--text-main);
+      letter-spacing: -0.02em;
+      max-width: 720px;
+      font-weight: 800;
+    }
+
+    .hero p {
+      font-size: 16px;
+      line-height: 1.75;
+      color: var(--text-soft);
+      max-width: 680px;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-top: 24px;
+    }
+
+    .primary-link,
+    .secondary-link {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      min-width: 160px;
+      padding: 14px 18px;
+      border-radius: 16px;
+      font-weight: 700;
+      font-size: 14px;
+      transition: all 0.25s ease;
+    }
+
+    .primary-link {
+      background: linear-gradient(90deg, var(--primary), #ff9650);
+      color: #fff;
+      box-shadow: 0 12px 24px rgba(240, 122, 43, 0.18);
+    }
+
+    .primary-link:hover {
+      transform: translateY(-2px);
+    }
+
+    .secondary-link {
+      background: rgba(255,255,255,0.04);
+      color: var(--text-main);
+      border: 1px solid var(--line);
+    }
+
+    .secondary-link:hover {
+      transform: translateY(-2px);
+      background: rgba(255,255,255,0.08);
+    }
+
+    .hero-right {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .hero-stats {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(150px, 1fr));
+      gap: 16px;
+    }
+
+    .stat-box {
+      padding: 22px;
+      border-radius: 24px;
+      border: 1px solid var(--line);
+      background: linear-gradient(180deg, rgba(22,35,58,0.96), rgba(14,24,40,0.96));
+      box-shadow: 0 12px 24px rgba(0, 0, 0, 0.16);
+    }
+
+    .stat-box .label {
+      color: var(--text-soft);
+      font-size: 14px;
+      margin-bottom: 10px;
+      font-weight: 600;
+    }
+
+    .stat-box .value {
+      font-size: 24px;
+      font-weight: 800;
+      color: #fff;
+      line-height: 1.2;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+      margin-bottom: 28px;
+    }
+
+    .card {
+      position: relative;
+      overflow: hidden;
+      min-height: 260px;
+      padding: 24px;
+      border-radius: 28px;
+      border: 1px solid var(--line);
+      background: linear-gradient(180deg, #14233c, #0f1c31);
+      box-shadow: 0 18px 34px rgba(0, 0, 0, 0.18);
+      transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      color: var(--text-main);
+    }
+
+    .card::before {
+      content: "";
+      position: absolute;
+      width: 180px;
+      height: 180px;
+      right: -50px;
+      top: -50px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(240,122,43,0.16), transparent 66%);
+      pointer-events: none;
+    }
+
+    .card:hover {
+      transform: translateY(-7px);
+      border-color: var(--line-strong);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.26);
+    }
+
+    .card-top,
+    .card-bottom {
+      position: relative;
+      z-index: 1;
+    }
+
+    .card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 22px;
+    }
+
+    .icon-box {
+      width: 54px;
+      height: 54px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 18px;
+      background: linear-gradient(135deg, rgba(240,107,31,0.18), rgba(255,255,255,0.06));
+      color: #fff;
+      font-size: 24px;
+      font-weight: 700;
+    }
+
+    .badge {
+      padding: 7px 12px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.06);
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #dbe7f6;
+      font-weight: 800;
+      border: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .card h2 {
+      font-size: 24px;
+      margin-bottom: 12px;
+      color: #ffffff;
+      letter-spacing: -0.01em;
+    }
+
+    .card p {
+      color: var(--text-soft);
+      line-height: 1.7;
+      font-size: 15px;
+    }
+
+    .go-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: #ffab72;
+      font-weight: 800;
+      font-size: 14px;
+      transition: transform 0.25s ease;
+    }
+
+    .card:hover .go-link {
+      transform: translateX(4px);
+    }
+
+    .membership-wide {
+      margin-bottom: 40px;
+      padding: 30px 32px;
+      border-radius: var(--radius-xl);
+      border: 1px solid var(--line);
+      background: linear-gradient(180deg, rgba(14,24,42,0.98), rgba(8,14,25,0.98));
+      box-shadow: var(--shadow-soft);
+    }
+
+    .membership-wide-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 18px;
+      margin-bottom: 20px;
+    }
+
+    .membership-wide h3 {
+      font-size: 24px;
+      color: #fff;
+      letter-spacing: -0.01em;
+      margin-bottom: 10px;
+    }
+
+    .membership-wide p {
+      color: var(--text-soft);
+      line-height: 1.8;
+      font-size: 15px;
+      max-width: 760px;
+    }
+
+    .membership-wide .cta-btn {
+      width: auto;
+      min-width: 210px;
+      margin-top: 0;
+      align-self: flex-start;
+    }
+
+    .membership-points {
+      margin-top: 18px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+    }
+
+    .membership-points div {
+      padding: 18px 18px 18px 38px;
+      position: relative;
+      color: rgba(255,255,255,0.88);
+      line-height: 1.6;
+      font-size: 14px;
+      border-radius: 18px;
+      border: 1px solid rgba(255,255,255,0.06);
+      background: rgba(255,255,255,0.03);
+    }
+
+    .membership-points div::before {
+      content: "";
+      position: absolute;
+      left: 18px;
+      top: 24px;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--primary);
+    }
+
+    .bottom-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 24px;
+    }
+
+    .features {
+      border-radius: var(--radius-xl);
+      box-shadow: var(--shadow-soft);
+      padding: 32px;
+      border: 1px solid var(--line);
+      background: linear-gradient(180deg, #121f36, #0d1729);
+    }
+
+    .features h3 {
+      font-size: 24px;
+      margin-bottom: 22px;
+      color: #fff;
+      letter-spacing: -0.01em;
+    }
+
+    .feature-list {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+
+    .feature-item {
+      padding: 22px;
+      border-radius: 22px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.03);
+    }
+
+    .feature-item h4 {
+      font-size: 20px;
+      margin-bottom: 10px;
+      color: #ffffff;
+    }
+
+    .feature-item p {
+      color: var(--text-soft);
+      line-height: 1.8;
+      font-size: 15px;
+    }
+
+    .cta-btn {
+      padding: 16px 20px;
+      border: none;
+      border-radius: 18px;
+      background: linear-gradient(90deg, var(--primary), #ff9550);
+      color: white;
+      font-size: 14px;
+      font-weight: 800;
+      cursor: pointer;
+      transition: transform 0.25s ease, opacity 0.25s ease;
+      box-shadow: 0 12px 24px rgba(240, 122, 43, 0.18);
+    }
+
+    .cta-btn:hover {
+      transform: scale(1.01);
+      opacity: 0.97;
+    }
+
+    .footer-note {
+      margin-top: 26px;
+      text-align: center;
+      color: var(--text-faint);
+      font-size: 14px;
+    }
+
+    @media (max-width: 1100px) {
+      .hero {
+        grid-template-columns: 1fr;
+      }
+
+      .cards {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .feature-list,
+      .membership-points {
+        grid-template-columns: 1fr;
+      }
+
+      .membership-wide-header {
+        flex-direction: column;
+      }
+    }
+
+    @media (max-width: 860px) {
+      .top-bar {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .auth-buttons {
+        justify-content: flex-start;
+      }
+
+      .main-nav {
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+
+      .main-nav a {
+        flex: unset;
+        min-width: 160px;
+      }
+    }
+
+    @media (max-width: 700px) {
+      .container {
+        padding: 20px 16px 30px;
+      }
+
+      .logo-wrap {
+        width: 76px;
+        height: 76px;
+      }
+
+      .site-title {
+        font-size: 27px;
+      }
+
+      .site-subtitle {
+        font-size: 14px;
+      }
+
+      .hero h1 {
+        font-size: 29px;
+      }
+
+      .hero p {
+        font-size: 15px;
+      }
+
+      .cards {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-stats {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .card h2 {
+        font-size: 22px;
+      }
+
+      .features,
+      .hero,
+      .membership-wide {
+        padding: 24px;
+      }
+
+      .mini-membership {
+        top: 14px;
+        left: 14px;
+      }
+
+      .top-header {
+        align-items: flex-start;
+      }
+
+      .main-nav {
+        padding: 0 4px 8px;
+      }
+
+      .main-nav a {
+        width: 100%;
+      }
+
+      .membership-wide .cta-btn {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="top-bar">
+      <header class="top-header">
+        <div class="logo-wrap">
+          <img src="logo.png" alt="Soru Bankası Logosu" class="logo">
+        </div>
+        <div class="title-group">
+          <div class="eyebrow">Modern Eğitim Platformu</div>
+          <div class="site-title">Sınavlara beraber hazırlanalım</div>
+          <div class="site-subtitle">
+            Video, soru setleri ve üyelik tabanlı kaynaklarla tek bir çatı altında düzenli ve güçlü bir hazırlık deneyimi.
+          </div>
+        </div>
+      </header>
+
+      <div class="auth-buttons">
+        <button class="login-btn" onclick="goToLogin()">Giriş Yap</button>
+        <button class="signup-btn" onclick="goToSignup()">Üye Ol</button>
+      </div>
+    </div>
+
+    <nav class="main-nav">
+      <a href="index.html" class="active">Ana Sayfa</a>
+      <a href="biz-kimiz.html">Biz Kimiz</a>
+      <a href="sinavlar.html">Sınavlar</a>
+      <a href="videolar.html">Videolar</a>
+      <a href="soru-setleri.html">Soru Setleri</a>
+    </nav>
+
+    <section class="hero">
+      <div class="mini-membership">Üyelik</div>
+
+      <div class="hero-left">
+        <div class="tag">
+          <span class="tag-dot"></span>
+          Abonelik Tabanlı Soru Bankası
+        </div>
+        <h1>Sınava hazırlanırken ihtiyacınız olan içerikler tek platformda.</h1>
+        <p>
+          Video anlatımlar, premium soru paketleri ve hedefe yönelik kaynaklarla daha düzenli,
+          daha modern ve daha güçlü bir hazırlık deneyimi sunuyoruz.
+        </p>
+        <div class="hero-actions">
+          <a class="primary-link" href="soru-setleri.html">Soru Setlerini İncele</a>
+          <a class="secondary-link" href="biz-kimiz.html">Platformu Tanı</a>
+        </div>
+      </div>
+
+      <div class="hero-right">
+        <div class="hero-stats">
+          <div class="stat-box">
+            <div class="label">İçerik Türü</div>
+            <div class="value">4 Ana Alan</div>
+          </div>
+          <div class="stat-box">
+            <div class="label">Erişim Modeli</div>
+            <div class="value">Abonelik</div>
+          </div>
+          <div class="stat-box">
+            <div class="label">Sınav Alanı</div>
+            <div class="value">IELTS / TOEFL / YDS</div>
+          </div>
+          <div class="stat-box">
+            <div class="label">İçerik Yapısı</div>
+            <div class="value">Video + Soru Seti</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="cards" id="cards-container"></section>
+
+    <section class="membership-wide">
+      <div class="membership-wide-header">
+        <div>
+          <h3>Üyelik Bilgileri</h3>
+          <p>
+            Tek üyelikle farklı sınav türlerine ait içeriklere kolayca erişebilir, video dersler,
+            soru paketleri ve düzenli güncellenen kaynaklarla hazırlık sürecinizi tek panelden yönetebilirsiniz.
+          </p>
+        </div>
+        <button class="cta-btn" onclick="showMembershipInfo()">Aboneliği İncele</button>
+      </div>
+
+      <div class="membership-points">
+        <div>Video dersler ve çözüm içeriklerine tek üyelikle erişim</div>
+        <div>IELTS, TOEFL ve YDS odaklı soru setlerine düzenli erişim</div>
+        <div>Tek panel üzerinden sade ve hızlı kullanım deneyimi</div>
+      </div>
+    </section>
+
+    <section class="bottom-grid">
+      <div class="features">
+        <h3>Platform Özellikleri</h3>
+        <div class="feature-list">
+          <div class="feature-item">
+            <h4>Video Dersler</h4>
+            <p>Konu anlatımları ve çözüm videolarıyla desteklenen güçlü bir öğrenme deneyimi.</p>
+          </div>
+          <div class="feature-item">
+            <h4>Soru Paketleri</h4>
+            <p>IELTS, TOEFL ve YDS odaklı düzenli güncellenen soru havuzu ve pratik alanları.</p>
+          </div>
+          <div class="feature-item">
+            <h4>Abonelik Sistemi</h4>
+            <p>Tek üyelikle farklı sınav türlerine hızlı erişim ve düzenli içerik güncellemesi.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="footer-note">
+      Modern tasarım dili ile güçlendirilmiş eğitim platformu ana sayfası
+    </div>
+  </div>
+
+  <script>
+    const cards = [
+      {
+        title: "Video",
+        subtitle: "Video içerikler, konu anlatımları ve çözüm destekleri",
+        href: "videolar.html",
+        badge: "Premium",
+        icon: "▶"
+      },
+      {
+        title: "IELTS Soruları",
+        subtitle: "Academic ve General Training için düzenli güncellenen soru paketleri",
+        href: "ielts.html",
+        badge: "Popular",
+        icon: "✦"
+      },
+      {
+        title: "TOEFL Soruları",
+        subtitle: "Reading, Listening, Speaking ve Writing odaklı hazırlık setleri",
+        href: "toefl.html",
+        badge: "New",
+        icon: "◉"
+      },
+      {
+        title: "YDS Soruları",
+        subtitle: "Konu bazlı, pratik odaklı ve deneme destekli soru arşivi",
+        href: "yds.html",
+        badge: "Exam Prep",
+        icon: "◆"
+      }
+    ];
+
+    const cardsContainer = document.getElementById("cards-container");
+
+    cards.forEach(card => {
+      const cardElement = document.createElement("a");
+      cardElement.className = "card";
+      cardElement.href = card.href;
+
+      cardElement.innerHTML = `
+        <div class="card-top">
+          <div class="card-header">
+            <div class="icon-box">${card.icon}</div>
+            <div class="badge">${card.badge}</div>
+          </div>
+          <div>
+            <h2>${card.title}</h2>
+            <p>${card.subtitle}</p>
+          </div>
+        </div>
+        <div class="card-bottom">
+          <div class="go-link">İçeriğe git <span>→</span></div>
+        </div>
+      `;
+
+      cardsContainer.appendChild(cardElement);
+    });
+
+    function showMembershipInfo() {
+      alert("Bu buton daha sonra abonelik detayları veya ödeme sayfasına bağlanabilir.");
+    }
+
+    function goToLogin() {
+      window.location.href = "giris-yap.html";
+    }
+
+    function goToSignup() {
+      window.location.href = "uye-ol.html";
+    }
+  </script>
+</body>
+</html>
