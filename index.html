@@ -646,24 +646,20 @@
     }
 
     .footer-note {
-      margin-top: 26px;
+      margin-top: 30px;
       text-align: center;
       color: var(--text-faint);
       font-size: 14px;
     }
 
-    @media (max-width: 1100px) {
-      .cards {
-        grid-template-columns: repeat(2, 1fr);
-      }
-
-      .feature-list,
-      .membership-points {
+    @media (max-width: 1150px) {
+      .hero-video,
+      .content-grid {
         grid-template-columns: 1fr;
       }
 
-      .membership-wide-header {
-        flex-direction: column;
+      .video-grid {
+        grid-template-columns: 1fr 1fr;
       }
     }
 
@@ -686,6 +682,19 @@
         flex: unset;
         min-width: 160px;
       }
+
+      .toolbar {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .search-box {
+        max-width: none;
+      }
+
+      .video-grid {
+        grid-template-columns: 1fr;
+      }
     }
 
     @media (max-width: 700px) {
@@ -699,40 +708,26 @@
       }
 
       .site-title {
-        font-size: 28px;
+        font-size: 27px;
       }
 
       .site-subtitle {
-        font-size: 13px;
+        font-size: 14px;
       }
 
-      .hero {
-        padding: 24px;
-      }
-
-      .hero h1 {
+      .hero-left h1 {
         font-size: 29px;
       }
 
-      .hero p {
+      .hero-left p {
         font-size: 15px;
       }
 
-      .cards {
-        grid-template-columns: 1fr;
-      }
-
-      .card h2 {
-        font-size: 22px;
-      }
-
-      .features,
-      .membership-wide {
-        padding: 24px;
-      }
-
-      .top-header {
-        align-items: flex-start;
+      .hero-video,
+      .toolbar,
+      .side-card,
+      .video-info {
+        padding: 20px;
       }
 
       .main-nav {
@@ -740,10 +735,6 @@
       }
 
       .main-nav a {
-        width: 100%;
-      }
-
-      .membership-wide .cta-btn {
         width: 100%;
       }
     }
@@ -760,7 +751,7 @@
           <div class="eyebrow">Dijital Eğitim Platformu</div>
           <div class="site-title">Sınavlara beraber hazırlanalım</div>
           <div class="site-subtitle">
-            Video dersler, soru setleri ve üyelik tabanlı içeriklerle hedef odaklı, sade ve güçlü bir hazırlık deneyimi.
+            Video dersler, konu anlatımları ve sınav odaklı içeriklerle hedeflerinize daha planlı ilerleyin.
           </div>
         </div>
       </header>
@@ -772,141 +763,242 @@
     </div>
 
     <nav class="main-nav">
-      <a href="index.html" class="active">Ana Sayfa</a>
+      <a href="index.html">Ana Sayfa</a>
       <a href="biz-kimiz.html">Biz Kimiz</a>
       <a href="sinavlar.html">Sınavlar</a>
-      <a href="videolar.html">Videolar</a>
+      <a href="videolar.html" class="active">Videolar</a>
       <a href="soru-setleri.html">Soru Setleri</a>
     </nav>
 
-    <section class="hero">
-      <div class="hero-inner">
-        <h1>Sınava hazırlanırken ihtiyacınız olan içerikler tek platformda.</h1>
+    <section class="hero-video">
+      <div class="hero-left">
+        <div class="hero-tag">
+          <span class="hero-tag-dot"></span>
+          Video İçerik Merkezi
+        </div>
+        <h1>Youtube video dersleriyle öğrenmeyi daha erişilebilir hale getirin.</h1>
         <p>
-          Video anlatımlar, premium soru paketleri ve hedefe yönelik kaynaklarla daha düzenli,
-          daha modern ve daha güçlü bir hazırlık deneyimi sunuyoruz.
+          IELTS, TOEFL, YDS ve genel İngilizce alanlarında hazırlanan video içeriklerini tek bir sayfada toplayarak
+          öğrencileriniz için daha düzenli, daha sade ve daha güçlü bir öğrenme alanı oluşturabilirsiniz.
         </p>
-        <div class="hero-actions">
-          <a class="primary-link" href="soru-setleri.html">Soru Setlerini İncele</a>
-          <a class="primary-link" href="videolar.html">Video Setlerini İncele</a>
-          <a class="secondary-link" href="biz-kimiz.html">Platformu Tanı</a>
+        <div class="hero-meta">
+          <div class="meta-chip">Youtube Entegrasyonu</div>
+          <div class="meta-chip">Kategori Bazlı Filtreleme</div>
+          <div class="meta-chip">Admin Paneline Bağlı</div>
+        </div>
+      </div>
+
+      <div class="hero-right">
+        <div class="featured-card">
+          <h3>Güncel video alanı</h3>
+          <p>
+            Bu sayfa önce admin paneline girilen videoları gösterir. Eğer admin panelinden eklenmiş video yoksa,
+            örnek videolar otomatik olarak görünür.
+          </p>
+          <div class="featured-badges">
+            <div class="featured-badge">IELTS</div>
+            <div class="featured-badge">TOEFL</div>
+            <div class="featured-badge">YDS</div>
+            <div class="featured-badge">Genel İngilizce</div>
+          </div>
         </div>
       </div>
     </section>
 
-    <section class="cards" id="cards-container"></section>
+    <section class="toolbar">
+      <div class="filters">
+        <button class="filter-btn active" data-category="all">Tümü</button>
+        <button class="filter-btn" data-category="ielts">IELTS</button>
+        <button class="filter-btn" data-category="toefl">TOEFL</button>
+        <button class="filter-btn" data-category="yds">YDS</button>
+        <button class="filter-btn" data-category="genel">Genel İngilizce</button>
+      </div>
 
-    <section class="bottom-grid">
-      <div class="features">
-        <h3>Platform Özellikleri</h3>
-        <div class="feature-list">
-          <div class="feature-item">
-            <h4>Video Dersler</h4>
-            <p>Konu anlatımları ve çözüm videolarıyla desteklenen güçlü bir öğrenme deneyimi.</p>
-          </div>
-          <div class="feature-item">
-            <h4>Soru Paketleri</h4>
-            <p>IELTS, TOEFL ve YDS odaklı düzenli güncellenen soru havuzu ve pratik alanları.</p>
-          </div>
-          <div class="feature-item">
-            <h4>Abonelik Sistemi</h4>
-            <p>Tek üyelikle farklı sınav türlerine hızlı erişim ve düzenli içerik güncellemesi.</p>
-          </div>
+      <div class="search-box">
+        <input type="text" id="searchInput" placeholder="Video başlığında ara..." />
+      </div>
+    </section>
+
+    <section class="content-grid">
+      <div>
+        <div class="video-grid" id="videoGrid"></div>
+        <div class="empty-state" id="emptyState">
+          Aradığınız kritere uygun video bulunamadı. Farklı bir kategori seçebilir veya arama kelimesini değiştirebilirsiniz.
         </div>
       </div>
 
-      <div class="membership-wide">
-        <div class="membership-label">Üyelik</div>
-        <div class="membership-tag">
-          <span class="membership-tag-dot"></span>
-          Abonelik Tabanlı Soru Bankası
-        </div>
-
-        <div class="membership-wide-header">
-          <div>
-            <h3>Üyelik</h3>
-            <p>
-              Tek üyelikle farklı sınav türlerine ait içeriklere kolayca erişebilir, video dersler,
-              soru paketleri ve düzenli güncellenen kaynaklarla hazırlık sürecinizi tek panelden yönetebilirsiniz.
-            </p>
+      <aside class="sidebar">
+        <div class="side-card">
+          <h3>Oynatma Listeleri</h3>
+          <div class="playlist-list">
+            <div class="playlist-item">
+              <strong>IELTS Hazırlık Serisi</strong>
+              <span>Writing, speaking ve reading odaklı örnek anlatım videoları.</span>
+            </div>
+            <div class="playlist-item">
+              <strong>TOEFL Video Dersleri</strong>
+              <span>Sınav becerilerine göre ayrılmış pratik ve strateji içerikleri.</span>
+            </div>
+            <div class="playlist-item">
+              <strong>YDS Çözüm Videoları</strong>
+              <span>Soru çözüm teknikleri ve konu tekrar videoları.</span>
+            </div>
           </div>
-          <button class="cta-btn" onclick="showMembershipInfo()">Aboneliği İncele</button>
         </div>
 
-        <div class="membership-points">
-          <div>Video dersler ve çözüm içeriklerine tek üyelikle erişim</div>
-          <div>IELTS, TOEFL ve YDS odaklı soru setlerine düzenli erişim</div>
-          <div>Tek panel üzerinden sade ve hızlı kullanım deneyimi</div>
+        <div class="side-card">
+          <h3>Bu Sayfa Nasıl Çalışıyor?</h3>
+          <div class="info-list">
+            <div class="info-item">
+              <strong>Admin bağlantısı</strong>
+              <span>Admin panelinden eklenen videolar burada otomatik görünür.</span>
+            </div>
+            <div class="info-item">
+              <strong>Kategori filtreleme</strong>
+              <span>Videolar kategoriye göre süzülür, arama kutusu ile başlıkta arama yapılır.</span>
+            </div>
+            <div class="info-item">
+              <strong>Kolay geliştirme</strong>
+              <span>Bir sonraki aşamada soru setleri için de aynı mantık kurulabilir.</span>
+            </div>
+          </div>
         </div>
-      </div>
+      </aside>
     </section>
 
     <div class="footer-note">
-      Modern tasarım dili ile güçlendirilmiş eğitim platformu ana sayfası
+      Video içerik sayfası · Admin paneline bağlı sürüm
     </div>
   </div>
 
   <script>
-    const cards = [
+    const STORAGE_KEY = "adminVideos";
+
+    const fallbackVideos = [
       {
-        title: "Video",
-        subtitle: "Video içerikler, konu anlatımları ve çözüm destekleri",
-        href: "videolar.html",
-        badge: "Premium",
-        icon: "▶"
+        title: "IELTS Writing Task 2 Giriş Teknikleri",
+        description: "IELTS Writing Task 2 için etkili giriş paragrafı kurma yöntemleri ve örnek yapı incelemesi.",
+        category: "ielts",
+        categoryLabel: "IELTS",
+        duration: "12 dk",
+        level: "B1 - B2",
+        youtubeId: "HAnw168huqA"
       },
       {
-        title: "IELTS Soruları",
-        subtitle: "Academic ve General Training için düzenli güncellenen soru paketleri",
-        href: "ielts.html",
-        badge: "Popular",
-        icon: "✦"
+        title: "TOEFL Reading Stratejileri",
+        description: "TOEFL reading bölümü için zaman yönetimi, soru tipi tanıma ve metin tarama stratejileri.",
+        category: "toefl",
+        categoryLabel: "TOEFL",
+        duration: "15 dk",
+        level: "B1 - B2",
+        youtubeId: "sXxVQ1m2QGk"
       },
       {
-        title: "TOEFL Soruları",
-        subtitle: "Reading, Listening, Speaking ve Writing odaklı hazırlık setleri",
-        href: "toefl.html",
-        badge: "New",
-        icon: "◉"
+        title: "YDS Kelime Çalışma Yöntemleri",
+        description: "YDS hazırlığında kelime bilgisini güçlendirmek için uygulanabilir tekrar ve öğrenme teknikleri.",
+        category: "yds",
+        categoryLabel: "YDS",
+        duration: "10 dk",
+        level: "A2 - B1",
+        youtubeId: "hJW20iL5lRc"
       },
       {
-        title: "YDS Soruları",
-        subtitle: "Konu bazlı, pratik odaklı ve deneme destekli soru arşivi",
-        href: "yds.html",
-        badge: "Exam Prep",
-        icon: "◆"
+        title: "Genel İngilizce: Günlük Konuşma Kalıpları",
+        description: "Günlük hayatta sık kullanılan İngilizce ifadeler ve temel iletişim kalıpları üzerine video ders.",
+        category: "genel",
+        categoryLabel: "Genel İngilizce",
+        duration: "14 dk",
+        level: "A2 - B1",
+        youtubeId: "jzG7F712wLI"
       }
     ];
 
-    const cardsContainer = document.getElementById("cards-container");
+    const videoGrid = document.getElementById("videoGrid");
+    const emptyState = document.getElementById("emptyState");
+    const filterButtons = document.querySelectorAll(".filter-btn");
+    const searchInput = document.getElementById("searchInput");
 
-    cards.forEach(card => {
-      const cardElement = document.createElement("a");
-      cardElement.className = "card";
-      cardElement.href = card.href;
+    let activeCategory = "all";
 
-      cardElement.innerHTML = `
-        <div class="card-top">
-          <div class="card-header">
-            <div class="icon-box">${card.icon}</div>
-            <div class="badge">${card.badge}</div>
+    function getStoredVideos() {
+      try {
+        const raw = localStorage.getItem(STORAGE_KEY);
+        if (!raw) return [];
+        const parsed = JSON.parse(raw);
+        return Array.isArray(parsed) ? parsed : [];
+      } catch (error) {
+        console.error("Videolar okunamadı:", error);
+        return [];
+      }
+    }
+
+    function getAllVideos() {
+      const adminVideos = getStoredVideos();
+      return adminVideos.length > 0 ? adminVideos : fallbackVideos;
+    }
+
+    function renderVideos() {
+      const videos = getAllVideos();
+      const searchTerm = searchInput.value.trim().toLowerCase();
+
+      const filteredVideos = videos.filter(video => {
+        const matchesCategory = activeCategory === "all" || video.category === activeCategory;
+        const matchesSearch = video.title.toLowerCase().includes(searchTerm);
+        return matchesCategory && matchesSearch;
+      });
+
+      videoGrid.innerHTML = "";
+
+      if (filteredVideos.length === 0) {
+        emptyState.style.display = "block";
+        return;
+      }
+
+      emptyState.style.display = "none";
+
+      filteredVideos.forEach(video => {
+        const card = document.createElement("article");
+        card.className = "video-card";
+
+        card.innerHTML = `
+          <div class="video-frame">
+            <iframe
+              src="https://www.youtube.com/embed/${video.youtubeId}"
+              title="${video.title}"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowfullscreen>
+            </iframe>
           </div>
-          <div>
-            <h2>${card.title}</h2>
-            <p>${card.subtitle}</p>
+          <div class="video-info">
+            <div class="video-topline">
+              <div class="video-category">${video.categoryLabel}</div>
+              <div class="video-duration">${video.duration}</div>
+            </div>
+            <h2 class="video-title">${video.title}</h2>
+            <p class="video-desc">${video.description}</p>
+            <div class="video-footer">
+              <div class="video-level">Seviye: ${video.level}</div>
+              <a class="watch-link" href="https://www.youtube.com/watch?v=${video.youtubeId}" target="_blank" rel="noopener noreferrer">
+                Youtube'da aç →
+              </a>
+            </div>
           </div>
-        </div>
-        <div class="card-bottom">
-          <div class="go-link">İçeriğe git <span>→</span></div>
-        </div>
-      `;
+        `;
 
-      cardsContainer.appendChild(cardElement);
+        videoGrid.appendChild(card);
+      });
+    }
+
+    filterButtons.forEach(button => {
+      button.addEventListener("click", () => {
+        filterButtons.forEach(btn => btn.classList.remove("active"));
+        button.classList.add("active");
+        activeCategory = button.dataset.category;
+        renderVideos();
+      });
     });
 
-    function showMembershipInfo() {
-      alert("Bu buton daha sonra abonelik detayları veya ödeme sayfasına bağlanabilir.");
-    }
+    searchInput.addEventListener("input", renderVideos);
 
     function goToLogin() {
       window.location.href = "giris-yap.html";
@@ -915,6 +1007,8 @@
     function goToSignup() {
       window.location.href = "uye-ol.html";
     }
+
+    renderVideos();
   </script>
 </body>
 </html>
