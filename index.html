@@ -342,7 +342,7 @@
       display: grid;
       grid-template-columns: repeat(4, 1fr);
       gap: 24px;
-      margin-bottom: 24px;
+      margin-bottom: 28px;
     }
 
     .card {
@@ -444,13 +444,60 @@
       transform: translateX(4px);
     }
 
+    .bottom-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 24px;
+      margin-bottom: 24px;
+    }
+
+    .features,
     .membership-wide {
-      margin-bottom: 40px;
-      padding: 26px 28px;
       border-radius: var(--radius-xl);
-      border: 1px solid var(--line);
-      background: linear-gradient(180deg, rgba(14,24,42,0.98), rgba(8,14,25,0.98));
       box-shadow: var(--shadow-soft);
+      border: 1px solid var(--line);
+    }
+
+    .features {
+      padding: 32px;
+      background: linear-gradient(180deg, #121f36, #0d1729);
+    }
+
+    .features h3 {
+      font-size: 24px;
+      margin-bottom: 22px;
+      color: #fff;
+      letter-spacing: -0.01em;
+    }
+
+    .feature-list {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+
+    .feature-item {
+      padding: 22px;
+      border-radius: 22px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.03);
+    }
+
+    .feature-item h4 {
+      font-size: 20px;
+      margin-bottom: 10px;
+      color: #ffffff;
+    }
+
+    .feature-item p {
+      color: var(--text-soft);
+      line-height: 1.8;
+      font-size: 15px;
+    }
+
+    .membership-wide {
+      padding: 26px 28px;
+      background: linear-gradient(180deg, rgba(14,24,42,0.98), rgba(8,14,25,0.98));
     }
 
     .membership-label {
@@ -546,52 +593,6 @@
       height: 8px;
       border-radius: 50%;
       background: var(--primary);
-    }
-
-    .bottom-grid {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 24px;
-    }
-
-    .features {
-      border-radius: var(--radius-xl);
-      box-shadow: var(--shadow-soft);
-      padding: 32px;
-      border: 1px solid var(--line);
-      background: linear-gradient(180deg, #121f36, #0d1729);
-    }
-
-    .features h3 {
-      font-size: 24px;
-      margin-bottom: 22px;
-      color: #fff;
-      letter-spacing: -0.01em;
-    }
-
-    .feature-list {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 16px;
-    }
-
-    .feature-item {
-      padding: 22px;
-      border-radius: 22px;
-      border: 1px solid var(--line);
-      background: rgba(255,255,255,0.03);
-    }
-
-    .feature-item h4 {
-      font-size: 20px;
-      margin-bottom: 10px;
-      color: #ffffff;
-    }
-
-    .feature-item p {
-      color: var(--text-soft);
-      line-height: 1.8;
-      font-size: 15px;
     }
 
     .cta-btn {
@@ -774,31 +775,6 @@
 
     <section class="cards" id="cards-container"></section>
 
-    <section class="membership-wide">
-      <div class="membership-label">Üyelik</div>
-      <div class="membership-tag">
-        <span class="membership-tag-dot"></span>
-        Abonelik Tabanlı Soru Bankası
-      </div>
-
-      <div class="membership-wide-header">
-        <div>
-          <h3>Üyelik Bilgileri</h3>
-          <p>
-            Tek üyelikle farklı sınav türlerine ait içeriklere kolayca erişebilir, video dersler,
-            soru paketleri ve düzenli güncellenen kaynaklarla hazırlık sürecinizi tek panelden yönetebilirsiniz.
-          </p>
-        </div>
-        <button class="cta-btn" onclick="showMembershipInfo()">Aboneliği İncele</button>
-      </div>
-
-      <div class="membership-points">
-        <div>Video dersler ve çözüm içeriklerine tek üyelikle erişim</div>
-        <div>IELTS, TOEFL ve YDS odaklı soru setlerine düzenli erişim</div>
-        <div>Tek panel üzerinden sade ve hızlı kullanım deneyimi</div>
-      </div>
-    </section>
-
     <section class="bottom-grid">
       <div class="features">
         <h3>Platform Özellikleri</h3>
@@ -815,6 +791,31 @@
             <h4>Abonelik Sistemi</h4>
             <p>Tek üyelikle farklı sınav türlerine hızlı erişim ve düzenli içerik güncellemesi.</p>
           </div>
+        </div>
+      </div>
+
+      <div class="membership-wide">
+        <div class="membership-label">Üyelik</div>
+        <div class="membership-tag">
+          <span class="membership-tag-dot"></span>
+          Abonelik Tabanlı Soru Bankası
+        </div>
+
+        <div class="membership-wide-header">
+          <div>
+            <h3>Üyelik</h3>
+            <p>
+              Tek üyelikle farklı sınav türlerine ait içeriklere kolayca erişebilir, video dersler,
+              soru paketleri ve düzenli güncellenen kaynaklarla hazırlık sürecinizi tek panelden yönetebilirsiniz.
+            </p>
+          </div>
+          <button class="cta-btn" onclick="showMembershipInfo()">Aboneliği İncele</button>
+        </div>
+
+        <div class="membership-points">
+          <div>Video dersler ve çözüm içeriklerine tek üyelikle erişim</div>
+          <div>IELTS, TOEFL ve YDS odaklı soru setlerine düzenli erişim</div>
+          <div>Tek panel üzerinden sade ve hızlı kullanım deneyimi</div>
         </div>
       </div>
     </section>
