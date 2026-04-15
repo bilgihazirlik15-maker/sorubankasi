@@ -211,19 +211,23 @@
     }
 
     .hero {
-      position: relative;
-      display: grid;
-      grid-template-columns: 1.45fr 0.75fr;
-      gap: 24px;
-      align-items: stretch;
-      margin-bottom: 38px;
-      padding: 32px;
-      border: 1px solid var(--line);
-      border-radius: var(--radius-xl);
-      background: linear-gradient(180deg, rgba(17, 27, 46, 0.96), rgba(10, 18, 32, 0.98));
-      box-shadow: var(--shadow);
-      overflow: hidden;
-    }
+  margin-bottom: 36px;
+}
+
+.hero-intro {
+  padding: 36px;
+  border-radius: 28px;
+
+  background: linear-gradient(
+    180deg,
+    rgba(25, 40, 65, 0.95),
+    rgba(15, 25, 45, 0.95)
+  );
+
+  border: 1px solid rgba(255,255,255,0.08);
+
+  box-shadow: 0 20px 40px rgba(0,0,0,0.25);
+}
 
     .hero::after {
       content: "";
@@ -350,7 +354,7 @@
       margin-bottom: 28px;
     }
 
-    .card {
+  .card {
   position: relative;
   overflow: hidden;
   min-height: 260px;
@@ -361,14 +365,14 @@
 
   background: linear-gradient(
     180deg,
-    rgba(30, 45, 70, 0.85),
-    rgba(20, 30, 50, 0.85)
+    rgba(45, 65, 95, 0.9),
+    rgba(30, 45, 75, 0.9)
   );
 
-  backdrop-filter: blur(10px);
+  backdrop-filter: blur(8px);
 
   box-shadow: 
-    0 18px 34px rgba(0, 0, 0, 0.25);
+    0 18px 34px rgba(0, 0, 0, 0.22);
 
   transition: all 0.25s ease;
 
@@ -392,14 +396,20 @@
   );
 }
 
-    .card:hover {
-  transform: translateY(-6px) scale(1.01);
+ .card:hover {
+  transform: translateY(-6px);
 
   border-color: rgba(240,122,43,0.35);
 
+  background: linear-gradient(
+    180deg,
+    rgba(55, 80, 115, 0.95),
+    rgba(35, 55, 85, 0.95)
+  );
+
   box-shadow: 
     0 25px 45px rgba(0,0,0,0.35),
-    0 0 20px rgba(240,122,43,0.15);
+    0 0 20px rgba(240,122,43,0.12);
 }
 
     .card-top,
@@ -415,7 +425,7 @@
       margin-bottom: 22px;
     }
 
-    .icon-box {
+  .icon-box {
   width: 54px;
   height: 54px;
 
@@ -780,29 +790,19 @@
     </nav>
 
     <section class="hero">
-      <div class="hero-left">
-        <h1>Sınava hazırlanırken ihtiyacınız olan içerikler tek platformda.</h1>
-        <p>
-          Video anlatımlar, premium soru paketleri ve hedefe yönelik kaynaklarla daha düzenli,
-          daha modern ve daha güçlü bir hazırlık deneyimi sunuyoruz.
-        </p>
-        <div class="hero-actions">
-          <a class="primary-link" href="soru-setleri.html">Soru Setlerini İncele</a>
-          <a class="secondary-link" href="biz-kimiz.html">Platformu Tanı</a>
-        </div>
-      </div>
+  <div class="hero-intro">
+    <h1>Sınava hazırlanırken ihtiyacınız olan içerikler tek platformda.</h1>
+    <p>
+      Video anlatımlar, premium soru paketleri ve hedefe yönelik kaynaklarla
+      daha düzenli ve güçlü bir hazırlık deneyimi sunuyoruz.
+    </p>
 
-      <div class="hero-right">
-        <div class="hero-info-card">
-          <div class="label">Tek panelde erişim</div>
-          <div class="value">Videolar, soru setleri ve sınav odaklı kaynaklar bir arada</div>
-          <div class="desc">
-            IELTS, TOEFL ve YDS için hazırlanmış içerikleri sade bir yapı içinde sunarak öğrencilerin
-            ihtiyaç duyduğu kaynaklara daha hızlı ulaşmasını hedefliyoruz.
-          </div>
-        </div>
-      </div>
-    </section>
+    <div class="hero-actions">
+      <a class="primary-link" href="soru-setleri.html">Soru Setlerini İncele</a>
+      <a class="secondary-link" href="biz-kimiz.html">Platformu Tanı</a>
+    </div>
+  </div>
+</section>
 
     <section class="cards" id="cards-container"></section>
 
