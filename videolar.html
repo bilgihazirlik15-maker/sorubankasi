@@ -1,0 +1,939 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Videolar | Soru Bankası</title>
+  <style>
+    :root {
+      --bg: #0a1220;
+      --bg-soft: #101a2d;
+      --bg-deep: #07101d;
+      --text-main: #f4f7fb;
+      --text-soft: #b8c4d6;
+      --text-faint: #7f91aa;
+      --primary: #f07a2b;
+      --primary-dark: #c95a12;
+      --line: rgba(255, 255, 255, 0.08);
+      --line-strong: rgba(240, 122, 43, 0.22);
+      --shadow: 0 22px 48px rgba(0, 0, 0, 0.34);
+      --shadow-soft: 0 14px 30px rgba(0, 0, 0, 0.24);
+      --radius-xl: 28px;
+      --radius-lg: 22px;
+      --radius-md: 16px;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Inter, Arial, Helvetica, sans-serif;
+      min-height: 100vh;
+      color: var(--text-main);
+      background:
+        radial-gradient(circle at top left, rgba(240, 122, 43, 0.12), transparent 28%),
+        radial-gradient(circle at top right, rgba(65, 108, 170, 0.10), transparent 26%),
+        linear-gradient(180deg, #111c2f 0%, #0c1525 36%, #070f1b 100%);
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    button,
+    input {
+      font: inherit;
+    }
+
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 26px 24px 42px;
+    }
+
+    .top-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      margin-bottom: 14px;
+      padding: 10px 4px 6px;
+    }
+
+    .top-header {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      min-width: 0;
+    }
+
+    .logo-wrap {
+      width: 88px;
+      height: 88px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 999px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.07), rgba(255,255,255,0.03));
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow-soft);
+      flex-shrink: 0;
+      overflow: hidden;
+      backdrop-filter: blur(10px);
+      padding: 12px;
+    }
+
+    .logo {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      object-position: center;
+      display: block;
+    }
+
+    .title-group {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--primary);
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: 24px;
+      height: 2px;
+      border-radius: 999px;
+      background: var(--primary);
+    }
+
+    .site-title {
+      font-size: 33px;
+      font-weight: 800;
+      color: var(--text-main);
+      letter-spacing: -0.02em;
+      line-height: 1.1;
+    }
+
+    .site-subtitle {
+      color: var(--text-soft);
+      font-size: 15px;
+      line-height: 1.55;
+      max-width: 560px;
+    }
+
+    .auth-buttons {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+      flex-shrink: 0;
+    }
+
+    .login-btn,
+    .signup-btn {
+      padding: 12px 18px;
+      border-radius: 999px;
+      font-size: 14px;
+      font-weight: 700;
+      transition: all 0.25s ease;
+      cursor: pointer;
+      border: none;
+    }
+
+    .login-btn {
+      background: rgba(255,255,255,0.05);
+      color: var(--text-main);
+      border: 1px solid var(--line);
+    }
+
+    .login-btn:hover {
+      background: rgba(255,255,255,0.10);
+      transform: translateY(-1px);
+    }
+
+    .signup-btn {
+      background: linear-gradient(90deg, var(--primary), #ff9a57);
+      color: white;
+      box-shadow: 0 10px 24px rgba(240, 122, 43, 0.22);
+    }
+
+    .signup-btn:hover {
+      transform: translateY(-1px);
+      opacity: 0.97;
+    }
+
+    .main-nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      width: 100%;
+      margin: 12px 0 28px;
+      padding: 0 14px 8px;
+    }
+
+    .main-nav a {
+      flex: 1;
+      text-align: center;
+      padding: 12px 14px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.04);
+      color: var(--text-soft);
+      font-size: 14px;
+      font-weight: 700;
+      transition: all 0.25s ease;
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
+      backdrop-filter: blur(8px);
+      white-space: nowrap;
+    }
+
+    .main-nav a:hover,
+    .main-nav a.active {
+      background: var(--primary);
+      color: #fff;
+      border-color: rgba(240, 122, 43, 0.35);
+      transform: translateY(-1px);
+    }
+
+    .hero-video {
+      position: relative;
+      display: grid;
+      grid-template-columns: 1.2fr 0.85fr;
+      gap: 24px;
+      align-items: stretch;
+      margin-bottom: 28px;
+      padding: 32px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius-xl);
+      background: linear-gradient(180deg, rgba(17, 27, 46, 0.96), rgba(10, 18, 32, 0.98));
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .hero-video::after {
+      content: "";
+      position: absolute;
+      width: 360px;
+      height: 360px;
+      right: -90px;
+      top: -90px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(240, 122, 43, 0.14), transparent 68%);
+      pointer-events: none;
+    }
+
+    .hero-left,
+    .hero-right {
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 14px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.08);
+      background: rgba(255,255,255,0.04);
+      color: #d8e4f5;
+      font-size: 12px;
+      margin-bottom: 18px;
+      font-weight: 700;
+    }
+
+    .hero-tag-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--primary);
+    }
+
+    .hero-left h1 {
+      font-size: 34px;
+      line-height: 1.2;
+      margin-bottom: 14px;
+      color: var(--text-main);
+      letter-spacing: -0.02em;
+      font-weight: 800;
+    }
+
+    .hero-left p {
+      font-size: 16px;
+      line-height: 1.75;
+      color: var(--text-soft);
+      max-width: 680px;
+      margin-bottom: 22px;
+    }
+
+    .hero-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .meta-chip {
+      padding: 10px 14px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.04);
+      color: var(--text-soft);
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .featured-card {
+      padding: 20px;
+      border-radius: 24px;
+      border: 1px solid var(--line);
+      background: linear-gradient(180deg, rgba(22,35,58,0.96), rgba(14,24,40,0.96));
+      box-shadow: 0 12px 24px rgba(0, 0, 0, 0.16);
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      height: 100%;
+    }
+
+    .featured-card h3 {
+      font-size: 22px;
+      color: #fff;
+      letter-spacing: -0.01em;
+    }
+
+    .featured-card p {
+      color: var(--text-soft);
+      font-size: 15px;
+      line-height: 1.7;
+    }
+
+    .featured-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .featured-badge {
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(240, 122, 43, 0.12);
+      border: 1px solid rgba(240, 122, 43, 0.22);
+      color: #ffbe90;
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 0.04em;
+    }
+
+    .toolbar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 24px;
+      padding: 20px;
+      border-radius: 24px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.03);
+      box-shadow: var(--shadow-soft);
+    }
+
+    .filters {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .filter-btn {
+      padding: 11px 16px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.04);
+      color: var(--text-soft);
+      font-size: 14px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.25s ease;
+    }
+
+    .filter-btn:hover,
+    .filter-btn.active {
+      background: var(--primary);
+      color: #fff;
+      border-color: rgba(240, 122, 43, 0.35);
+      transform: translateY(-1px);
+    }
+
+    .search-box {
+      min-width: 260px;
+      flex: 1;
+      max-width: 360px;
+    }
+
+    .search-box input {
+      width: 100%;
+      padding: 13px 16px;
+      border-radius: 16px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.04);
+      color: var(--text-main);
+      outline: none;
+    }
+
+    .search-box input::placeholder {
+      color: var(--text-faint);
+    }
+
+    .content-grid {
+      display: grid;
+      grid-template-columns: 1.5fr 0.75fr;
+      gap: 24px;
+      align-items: start;
+    }
+
+    .video-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 22px;
+    }
+
+    .video-card {
+      overflow: hidden;
+      border-radius: 24px;
+      border: 1px solid var(--line);
+      background: linear-gradient(180deg, #14233c, #0f1c31);
+      box-shadow: 0 18px 34px rgba(0, 0, 0, 0.18);
+      transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .video-card:hover {
+      transform: translateY(-6px);
+      border-color: var(--line-strong);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.26);
+    }
+
+    .video-frame {
+      position: relative;
+      width: 100%;
+      padding-top: 56.25%;
+      background: #0b1422;
+    }
+
+    .video-frame iframe {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+
+    .video-info {
+      padding: 20px;
+    }
+
+    .video-topline {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 14px;
+    }
+
+    .video-category {
+      display: inline-flex;
+      padding: 7px 12px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.06);
+      font-size: 11px;
+      color: #dbe7f6;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .video-duration {
+      color: #ffb37d;
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .video-title {
+      font-size: 22px;
+      color: #fff;
+      margin-bottom: 10px;
+      line-height: 1.35;
+      letter-spacing: -0.01em;
+    }
+
+    .video-desc {
+      color: var(--text-soft);
+      font-size: 15px;
+      line-height: 1.75;
+      margin-bottom: 16px;
+    }
+
+    .video-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .video-level {
+      color: var(--text-faint);
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .watch-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: #ffab72;
+      font-weight: 800;
+      font-size: 14px;
+    }
+
+    .sidebar {
+      display: flex;
+      flex-direction: column;
+      gap: 22px;
+    }
+
+    .side-card {
+      padding: 22px;
+      border-radius: 24px;
+      border: 1px solid var(--line);
+      background: linear-gradient(180deg, rgba(22,35,58,0.96), rgba(14,24,40,0.96));
+      box-shadow: 0 12px 24px rgba(0, 0, 0, 0.16);
+    }
+
+    .side-card h3 {
+      font-size: 22px;
+      color: #fff;
+      margin-bottom: 16px;
+      letter-spacing: -0.01em;
+    }
+
+    .playlist-list,
+    .info-list {
+      display: grid;
+      gap: 12px;
+    }
+
+    .playlist-item,
+    .info-item {
+      padding: 15px 16px;
+      border-radius: 18px;
+      border: 1px solid rgba(255,255,255,0.06);
+      background: rgba(255,255,255,0.03);
+    }
+
+    .playlist-item strong,
+    .info-item strong {
+      display: block;
+      color: #fff;
+      margin-bottom: 6px;
+      font-size: 15px;
+    }
+
+    .playlist-item span,
+    .info-item span {
+      color: var(--text-soft);
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    .empty-state {
+      display: none;
+      padding: 28px;
+      border-radius: 24px;
+      border: 1px dashed rgba(255,255,255,0.14);
+      background: rgba(255,255,255,0.03);
+      color: var(--text-soft);
+      text-align: center;
+      font-size: 15px;
+      line-height: 1.7;
+    }
+
+    .footer-note {
+      margin-top: 30px;
+      text-align: center;
+      color: var(--text-faint);
+      font-size: 14px;
+    }
+
+    @media (max-width: 1150px) {
+      .hero-video,
+      .content-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .video-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media (max-width: 860px) {
+      .top-bar {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .auth-buttons {
+        justify-content: flex-start;
+      }
+
+      .main-nav {
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+
+      .main-nav a {
+        flex: unset;
+        min-width: 160px;
+      }
+
+      .toolbar {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .search-box {
+        max-width: none;
+      }
+
+      .video-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 700px) {
+      .container {
+        padding: 20px 16px 30px;
+      }
+
+      .logo-wrap {
+        width: 76px;
+        height: 76px;
+      }
+
+      .site-title {
+        font-size: 27px;
+      }
+
+      .site-subtitle {
+        font-size: 14px;
+      }
+
+      .hero-left h1 {
+        font-size: 29px;
+      }
+
+      .hero-left p {
+        font-size: 15px;
+      }
+
+      .hero-video,
+      .toolbar,
+      .side-card,
+      .video-info {
+        padding: 20px;
+      }
+
+      .main-nav {
+        padding: 0 4px 8px;
+      }
+
+      .main-nav a {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="top-bar">
+      <header class="top-header">
+        <div class="logo-wrap">
+          <img src="logo.png" alt="Soru Bankası Logosu" class="logo">
+        </div>
+        <div class="title-group">
+          <div class="eyebrow">Modern Eğitim Platformu</div>
+          <div class="site-title">Sınavlara beraber hazırlanalım</div>
+          <div class="site-subtitle">
+            Video dersler, konu anlatımları ve sınav odaklı içeriklerle hedeflerinize daha planlı ilerleyin.
+          </div>
+        </div>
+      </header>
+
+      <div class="auth-buttons">
+        <button class="login-btn" onclick="goToLogin()">Giriş Yap</button>
+        <button class="signup-btn" onclick="goToSignup()">Üye Ol</button>
+      </div>
+    </div>
+
+    <nav class="main-nav">
+      <a href="index.html">Ana Sayfa</a>
+      <a href="biz-kimiz.html">Biz Kimiz</a>
+      <a href="sinavlar.html">Sınavlar</a>
+      <a href="videolar.html" class="active">Videolar</a>
+      <a href="soru-setleri.html">Soru Setleri</a>
+    </nav>
+
+    <section class="hero-video">
+      <div class="hero-left">
+        <div class="hero-tag">
+          <span class="hero-tag-dot"></span>
+          Video İçerik Merkezi
+        </div>
+        <h1>Youtube video dersleriyle öğrenmeyi daha erişilebilir hale getirin.</h1>
+        <p>
+          IELTS, TOEFL, YDS ve genel İngilizce alanlarında hazırlanan video içeriklerini tek bir sayfada toplayarak
+          öğrencileriniz için daha düzenli, daha sade ve daha güçlü bir öğrenme alanı oluşturabilirsiniz.
+        </p>
+        <div class="hero-meta">
+          <div class="meta-chip">Youtube Entegrasyonu</div>
+          <div class="meta-chip">Kategori Bazlı Filtreleme</div>
+          <div class="meta-chip">Admin Sayfasına Uygun Altyapı</div>
+        </div>
+      </div>
+
+      <div class="hero-right">
+        <div class="featured-card">
+          <h3>Öne Çıkan Video Alanı</h3>
+          <p>
+            Bu sayfa yapısı, daha sonra admin panelinden yeni video ekleyebileceğin bir sisteme uygun olacak şekilde hazırlandı.
+            Şimdilik örnek Youtube videoları ile çalışıyor.
+          </p>
+          <div class="featured-badges">
+            <div class="featured-badge">IELTS</div>
+            <div class="featured-badge">TOEFL</div>
+            <div class="featured-badge">YDS</div>
+            <div class="featured-badge">Genel İngilizce</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="toolbar">
+      <div class="filters">
+        <button class="filter-btn active" data-category="all">Tümü</button>
+        <button class="filter-btn" data-category="ielts">IELTS</button>
+        <button class="filter-btn" data-category="toefl">TOEFL</button>
+        <button class="filter-btn" data-category="yds">YDS</button>
+        <button class="filter-btn" data-category="genel">Genel İngilizce</button>
+      </div>
+
+      <div class="search-box">
+        <input type="text" id="searchInput" placeholder="Video başlığında ara..." />
+      </div>
+    </section>
+
+    <section class="content-grid">
+      <div>
+        <div class="video-grid" id="videoGrid"></div>
+        <div class="empty-state" id="emptyState">
+          Aradığınız kritere uygun video bulunamadı. Farklı bir kategori seçebilir veya arama kelimesini değiştirebilirsiniz.
+        </div>
+      </div>
+
+      <aside class="sidebar">
+        <div class="side-card">
+          <h3>Oynatma Listeleri</h3>
+          <div class="playlist-list">
+            <div class="playlist-item">
+              <strong>IELTS Hazırlık Serisi</strong>
+              <span>Writing, speaking ve reading odaklı örnek anlatım videoları.</span>
+            </div>
+            <div class="playlist-item">
+              <strong>TOEFL Video Dersleri</strong>
+              <span>Sınav becerilerine göre ayrılmış pratik ve strateji içerikleri.</span>
+            </div>
+            <div class="playlist-item">
+              <strong>YDS Çözüm Videoları</strong>
+              <span>Soru çözüm teknikleri ve konu tekrar videoları.</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="side-card">
+          <h3>Bu Sayfa Ne İçin Hazırlandı?</h3>
+          <div class="info-list">
+            <div class="info-item">
+              <strong>Kolay Gezinme</strong>
+              <span>Kategorilere göre ayrılmış video yapısı sayesinde öğrenciler içeriklere daha hızlı ulaşır.</span>
+            </div>
+            <div class="info-item">
+              <strong>Youtube Entegrasyonu</strong>
+              <span>Videolar doğrudan sayfa içinde izlenebilir.</span>
+            </div>
+            <div class="info-item">
+              <strong>Admin Sayfasına Uygun</strong>
+              <span>Bir sonraki adımda video ekleme ve düzenleme için yönetim paneli eklenebilir.</span>
+            </div>
+          </div>
+        </div>
+      </aside>
+    </section>
+
+    <div class="footer-note">
+      Video içerik sayfası · Ana tasarım diliyle uyumlu modern görünüm
+    </div>
+  </div>
+
+  <script>
+    const videos = [
+      {
+        title: "IELTS Writing Task 2 Giriş Teknikleri",
+        description: "IELTS Writing Task 2 için etkili giriş paragrafı kurma yöntemleri ve örnek yapı incelemesi.",
+        category: "ielts",
+        categoryLabel: "IELTS",
+        duration: "12 dk",
+        level: "B1 - B2",
+        youtubeId: "HAnw168huqA"
+      },
+      {
+        title: "TOEFL Reading Stratejileri",
+        description: "TOEFL reading bölümü için zaman yönetimi, soru tipi tanıma ve metin tarama stratejileri.",
+        category: "toefl",
+        categoryLabel: "TOEFL",
+        duration: "15 dk",
+        level: "B1 - B2",
+        youtubeId: "sXxVQ1m2QGk"
+      },
+      {
+        title: "YDS Kelime Çalışma Yöntemleri",
+        description: "YDS hazırlığında kelime bilgisini güçlendirmek için uygulanabilir tekrar ve öğrenme teknikleri.",
+        category: "yds",
+        categoryLabel: "YDS",
+        duration: "10 dk",
+        level: "A2 - B1",
+        youtubeId: "hJW20iL5lRc"
+      },
+      {
+        title: "Genel İngilizce: Günlük Konuşma Kalıpları",
+        description: "Günlük hayatta sık kullanılan İngilizce ifadeler ve temel iletişim kalıpları üzerine video ders.",
+        category: "genel",
+        categoryLabel: "Genel İngilizce",
+        duration: "14 dk",
+        level: "A2 - B1",
+        youtubeId: "jzG7F712wLI"
+      },
+      {
+        title: "IELTS Speaking Band Yükseltme İpuçları",
+        description: "Speaking bölümünde daha akıcı ve daha organize cevaplar vermek için pratik öneriler.",
+        category: "ielts",
+        categoryLabel: "IELTS",
+        duration: "11 dk",
+        level: "B1 - B2",
+        youtubeId: "V7z7BAZdt2M"
+      },
+      {
+        title: "TOEFL Listening Not Alma Teknikleri",
+        description: "Listening sırasında etkili not alma ve ana fikri kaçırmadan takip etme yöntemleri.",
+        category: "toefl",
+        categoryLabel: "TOEFL",
+        duration: "13 dk",
+        level: "B1 - B2",
+        youtubeId: "lH2K2t8n7Ik"
+      }
+    ];
+
+    const videoGrid = document.getElementById("videoGrid");
+    const emptyState = document.getElementById("emptyState");
+    const filterButtons = document.querySelectorAll(".filter-btn");
+    const searchInput = document.getElementById("searchInput");
+
+    let activeCategory = "all";
+
+    function renderVideos() {
+      const searchTerm = searchInput.value.trim().toLowerCase();
+
+      const filteredVideos = videos.filter(video => {
+        const matchesCategory = activeCategory === "all" || video.category === activeCategory;
+        const matchesSearch = video.title.toLowerCase().includes(searchTerm);
+        return matchesCategory && matchesSearch;
+      });
+
+      videoGrid.innerHTML = "";
+
+      if (filteredVideos.length === 0) {
+        emptyState.style.display = "block";
+        return;
+      }
+
+      emptyState.style.display = "none";
+
+      filteredVideos.forEach(video => {
+        const card = document.createElement("article");
+        card.className = "video-card";
+
+        card.innerHTML = `
+          <div class="video-frame">
+            <iframe
+              src="https://www.youtube.com/embed/${video.youtubeId}"
+              title="${video.title}"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowfullscreen>
+            </iframe>
+          </div>
+          <div class="video-info">
+            <div class="video-topline">
+              <div class="video-category">${video.categoryLabel}</div>
+              <div class="video-duration">${video.duration}</div>
+            </div>
+            <h2 class="video-title">${video.title}</h2>
+            <p class="video-desc">${video.description}</p>
+            <div class="video-footer">
+              <div class="video-level">Seviye: ${video.level}</div>
+              <a class="watch-link" href="https://www.youtube.com/watch?v=${video.youtubeId}" target="_blank">
+                Youtube'da aç →
+              </a>
+            </div>
+          </div>
+        `;
+
+        videoGrid.appendChild(card);
+      });
+    }
+
+    filterButtons.forEach(button => {
+      button.addEventListener("click", () => {
+        filterButtons.forEach(btn => btn.classList.remove("active"));
+        button.classList.add("active");
+        activeCategory = button.dataset.category;
+        renderVideos();
+      });
+    });
+
+    searchInput.addEventListener("input", renderVideos);
+
+    function goToLogin() {
+      window.location.href = "giris-yap.html";
+    }
+
+    function goToSignup() {
+      window.location.href = "uye-ol.html";
+    }
+
+    renderVideos();
+  </script>
+</body>
+</html>
