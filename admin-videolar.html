@@ -7,629 +7,163 @@
   <style>
     :root {
       --bg: #0a1220;
-      --bg-soft: #101a2d;
-      --bg-deep: #07101d;
       --text-main: #f4f7fb;
       --text-soft: #b8c4d6;
       --text-faint: #7f91aa;
       --primary: #f07a2b;
-      --primary-dark: #c95a12;
-      --line: rgba(255, 255, 255, 0.08);
-      --shadow-soft: 0 14px 30px rgba(0, 0, 0, 0.24);
-      --card-bg: linear-gradient(180deg, rgba(60, 82, 118, 0.92), rgba(42, 60, 92, 0.92));
-      --card-bg-hover: linear-gradient(180deg, rgba(72, 98, 138, 0.96), rgba(48, 70, 106, 0.96));
+      --line: rgba(255,255,255,0.08);
+      --card-bg: linear-gradient(180deg, rgba(60,82,118,.92), rgba(42,60,92,.92));
     }
-
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
+    * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
-      font-family: Inter, Arial, Helvetica, sans-serif;
+      font-family: Inter, Arial, sans-serif;
       min-height: 100vh;
       color: var(--text-main);
       background:
-        radial-gradient(circle at top left, rgba(240, 122, 43, 0.12), transparent 28%),
-        radial-gradient(circle at top right, rgba(65, 108, 170, 0.10), transparent 26%),
+        radial-gradient(circle at top left, rgba(240,122,43,.12), transparent 28%),
+        radial-gradient(circle at top right, rgba(65,108,170,.10), transparent 26%),
         linear-gradient(180deg, #111c2f 0%, #0c1525 36%, #070f1b 100%);
     }
-
-    a {
-      text-decoration: none;
-      color: inherit;
-    }
-
-    button,
-    input,
-    textarea,
-    select {
-      font: inherit;
-    }
-
-    .container {
-      max-width: 1280px;
-      margin: 0 auto;
-      padding: 26px 24px 42px;
-    }
-
-    .top-bar {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 24px;
-      margin-bottom: 18px;
-      padding: 12px 4px 8px;
-    }
-
-    .top-header {
-      display: flex;
-      align-items: center;
-      gap: 18px;
-      min-width: 0;
-    }
-
-    .logo-wrap {
-      width: 104px;
-      height: 104px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border-radius: 50%;
-      background: #000;
-      border: 1px solid rgba(255,255,255,0.12);
-      box-shadow:
-        0 18px 34px rgba(0, 0, 0, 0.28),
-        0 0 0 1px rgba(240,122,43,0.10) inset;
-      flex-shrink: 0;
-      overflow: hidden;
-      padding: 0;
-    }
-
-    .logo {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: center;
-      display: block;
-      border-radius: 50%;
-    }
-
-    .title-group {
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-    }
-
-    .eyebrow {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      color: #ffb37d;
-      font-size: 11px;
-      font-weight: 800;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-    }
-
-    .eyebrow::before {
-      content: "";
-      width: 26px;
-      height: 2px;
-      border-radius: 999px;
-      background: var(--primary);
-    }
-
-    .site-title {
-      font-size: 34px;
-      font-weight: 800;
-      color: var(--text-main);
-      letter-spacing: -0.03em;
-      line-height: 1.05;
-    }
-
-    .site-subtitle {
-      color: var(--text-soft);
-      font-size: 14px;
-      line-height: 1.65;
-      max-width: 700px;
-    }
-
-    .back-link {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      padding: 12px 16px;
-      border-radius: 999px;
-      border: 1px solid rgba(255,255,255,0.10);
-      background: rgba(255,255,255,0.05);
-      color: var(--text-main);
-      font-size: 14px;
-      font-weight: 700;
-      transition: all 0.25s ease;
-    }
-
-    .back-link:hover {
-      background: rgba(255,255,255,0.10);
-      transform: translateY(-1px);
-    }
-
-    .hero,
-    .panel,
-    .video-item {
-      position: relative;
-      overflow: hidden;
-      border: 1px solid rgba(255,255,255,0.10);
-      background: var(--card-bg);
-      box-shadow: 0 18px 34px rgba(0, 0, 0, 0.22);
-    }
-
-    .hero::before,
-    .panel::before,
-    .video-item::before {
-      content: "";
-      position: absolute;
-      width: 220px;
-      height: 220px;
-      right: -60px;
-      top: -60px;
-      border-radius: 50%;
-      background: radial-gradient(circle, rgba(240,122,43,0.22), transparent 70%);
-      pointer-events: none;
-    }
-
-    .hero {
-      margin-bottom: 28px;
-      padding: 24px;
-      border-radius: 28px;
-    }
-
-    .hero-content {
-      position: relative;
-      z-index: 1;
-      max-width: 850px;
-    }
-
-    .hero h1 {
-      font-size: 32px;
-      line-height: 1.18;
-      margin-bottom: 14px;
-      color: var(--text-main);
-      letter-spacing: -0.02em;
-      font-weight: 800;
-    }
-
-    .hero p {
-      font-size: 15px;
-      line-height: 1.75;
-      color: #d7e2f0;
-    }
-
-    .layout {
-      display: grid;
-      grid-template-columns: 1.1fr 0.9fr;
-      gap: 24px;
-      align-items: start;
-    }
-
+    .container { max-width: 1100px; margin: 0 auto; padding: 28px 24px 40px; }
     .panel {
       padding: 24px;
-      border-radius: 28px;
+      border-radius: 24px;
+      border: 1px solid rgba(255,255,255,.10);
+      background: var(--card-bg);
+      box-shadow: 0 18px 34px rgba(0,0,0,.22);
     }
-
-    .panel > * {
-      position: relative;
-      z-index: 1;
-    }
-
-    .panel-title {
-      font-size: 24px;
-      font-weight: 800;
-      margin-bottom: 10px;
-      color: #fff;
-      letter-spacing: -0.01em;
-    }
-
-    .panel-subtitle {
-      color: #d7e2f0;
-      line-height: 1.7;
-      font-size: 14px;
-      margin-bottom: 22px;
-    }
-
-    .form-grid {
+    .panel + .panel { margin-top: 24px; }
+    h1 { font-size: 32px; margin-bottom: 10px; }
+    h2 { font-size: 24px; margin-bottom: 14px; }
+    .sub { color: var(--text-soft); line-height: 1.7; margin-bottom: 22px; }
+    .grid {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
       gap: 16px;
     }
-
-    .form-group {
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-    }
-
-    .form-group.full {
-      grid-column: 1 / -1;
-    }
-
+    .full { grid-column: 1 / -1; }
     label {
+      display: block;
+      margin-bottom: 8px;
       font-size: 13px;
       font-weight: 700;
-      color: #f0f5fb;
     }
-
-    input,
-    textarea,
-    select {
+    input, textarea, select {
       width: 100%;
-      border: 1px solid rgba(255,255,255,0.10);
-      background: rgba(8, 15, 28, 0.42);
+      padding: 14px;
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,.10);
+      background: rgba(8,15,28,.42);
       color: var(--text-main);
-      border-radius: 16px;
-      padding: 14px 14px;
       outline: none;
-      transition: all 0.2s ease;
     }
-
-    textarea {
-      min-height: 120px;
-      resize: vertical;
-    }
-
-    input::placeholder,
-    textarea::placeholder {
-      color: #9eb0c7;
-    }
-
-    input:focus,
-    textarea:focus,
-    select:focus {
-      border-color: rgba(240,122,43,0.45);
-      box-shadow: 0 0 0 3px rgba(240,122,43,0.10);
-    }
-
-    .form-actions {
+    textarea { min-height: 120px; resize: vertical; }
+    .actions {
       display: flex;
-      flex-wrap: wrap;
       gap: 12px;
-      margin-top: 22px;
+      flex-wrap: wrap;
+      margin-top: 20px;
     }
-
-    .primary-btn,
-    .secondary-btn,
-    .danger-btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
+    button {
       padding: 14px 18px;
-      border-radius: 16px;
+      border-radius: 14px;
       border: none;
       cursor: pointer;
-      font-size: 14px;
       font-weight: 800;
-      transition: all 0.25s ease;
     }
-
-    .primary-btn {
+    .primary {
       background: linear-gradient(90deg, var(--primary), #ff9650);
       color: #fff;
-      box-shadow: 0 12px 24px rgba(240, 122, 43, 0.18);
     }
-
-    .primary-btn:hover,
-    .secondary-btn:hover,
-    .danger-btn:hover {
-      transform: translateY(-2px);
+    .secondary {
+      background: rgba(255,255,255,.08);
+      color: #fff;
+      border: 1px solid rgba(255,255,255,.10);
     }
-
-    .secondary-btn {
-      background: rgba(255,255,255,0.08);
-      color: var(--text-main);
-      border: 1px solid rgba(255,255,255,0.10);
-    }
-
-    .secondary-btn:hover {
-      background: rgba(255,255,255,0.12);
-    }
-
-    .danger-btn {
-      background: rgba(255, 85, 85, 0.14);
-      color: #ffd7d7;
-      border: 1px solid rgba(255, 85, 85, 0.24);
-    }
-
-    .danger-btn:hover {
-      background: rgba(255, 85, 85, 0.20);
-    }
-
-    .helper-box {
-      padding: 16px 18px;
-      border-radius: 18px;
-      border: 1px solid rgba(255,255,255,0.08);
-      background: rgba(255,255,255,0.05);
-      color: #d7e2f0;
-      font-size: 14px;
-      line-height: 1.75;
-      margin-bottom: 18px;
-    }
-
     .status {
       margin-top: 18px;
-      min-height: 24px;
-      font-size: 14px;
+      min-height: 22px;
       font-weight: 700;
     }
-
-    .status.success {
-      color: #9ef0b3;
-    }
-
-    .status.error {
-      color: #ffb4b4;
-    }
-
-    .video-list {
-      display: grid;
-      gap: 16px;
-    }
-
-    .video-item {
-      padding: 18px;
-      border-radius: 22px;
-      background: var(--card-bg-hover);
-    }
-
-    .video-item > * {
-      position: relative;
-      z-index: 1;
-    }
-
-    .video-top {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
-      gap: 12px;
-      margin-bottom: 12px;
-    }
-
-    .video-title {
-      font-size: 20px;
-      font-weight: 800;
-      color: #fff;
-      line-height: 1.35;
-    }
-
-    .video-badge {
-      padding: 7px 11px;
-      border-radius: 999px;
-      background: rgba(255,255,255,0.10);
-      border: 1px solid rgba(255,255,255,0.10);
-      font-size: 11px;
-      color: #eef4fc;
-      font-weight: 800;
-      letter-spacing: 0.07em;
-      text-transform: uppercase;
-      white-space: nowrap;
-    }
-
-    .video-meta {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin-bottom: 12px;
-    }
-
-    .meta-chip {
-      padding: 8px 12px;
-      border-radius: 999px;
-      background: rgba(255,255,255,0.08);
-      border: 1px solid rgba(255,255,255,0.08);
-      color: #dfe8f5;
-      font-size: 12px;
-      font-weight: 700;
-    }
-
-    .video-desc {
-      color: #d7e2f0;
-      font-size: 14px;
-      line-height: 1.7;
-      margin-bottom: 14px;
-    }
-
-    .video-links {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin-bottom: 14px;
-    }
-
-    .video-links a {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      color: #ffd2b1;
-      font-size: 13px;
-      font-weight: 800;
-    }
-
-    .video-actions {
-      display: flex;
-      justify-content: flex-end;
-    }
-
-    .empty-state {
+    .ok { color: #9ef0b3; }
+    .err { color: #ffb4b4; }
+    .list { display: grid; gap: 14px; }
+    .item {
       padding: 18px;
       border-radius: 18px;
-      border: 1px dashed rgba(255,255,255,0.14);
-      background: rgba(255,255,255,0.04);
-      color: #d7e2f0;
-      font-size: 14px;
-      line-height: 1.7;
+      border: 1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.05);
     }
-
-    .footer-note {
-      margin-top: 26px;
-      text-align: center;
-      color: var(--text-faint);
-      font-size: 14px;
-    }
-
-    @media (max-width: 1100px) {
-      .layout {
-        grid-template-columns: 1fr;
-      }
-    }
-
-    @media (max-width: 860px) {
-      .top-bar {
-        flex-direction: column;
-        align-items: flex-start;
-      }
-
-      .form-grid {
-        grid-template-columns: 1fr;
-      }
-    }
-
-    @media (max-width: 700px) {
-      .container {
-        padding: 20px 16px 30px;
-      }
-
-      .logo-wrap {
-        width: 90px;
-        height: 90px;
-      }
-
-      .site-title {
-        font-size: 28px;
-      }
-
-      .site-subtitle {
-        font-size: 13px;
-      }
-
-      .hero,
-      .panel {
-        padding: 22px;
-      }
-
-      .top-header {
-        align-items: flex-start;
-      }
+    .item h3 { margin-bottom: 8px; font-size: 20px; }
+    .meta { color: var(--text-soft); font-size: 14px; line-height: 1.7; }
+    @media (max-width: 800px) {
+      .grid { grid-template-columns: 1fr; }
+      .full { grid-column: auto; }
     }
   </style>
 </head>
 <body>
   <div class="container">
-    <div class="top-bar">
-      <header class="top-header">
-        <div class="logo-wrap">
-          <img src="logo.png" alt="Soru Bankası Logosu" class="logo">
-        </div>
-        <div class="title-group">
-          <div class="eyebrow">Admin Paneli</div>
-          <div class="site-title">Video Yönetimi</div>
-          <div class="site-subtitle">
-            Bu ekran sadece içerik giriş ve düzenleme için tasarlandı. İlk aşamada yeni video ekleyebilir, kayıtları görüntüleyebilir ve silebilirsin.
+    <div class="panel">
+      <h1>Admin Video Girişi</h1>
+      <div class="sub">Buradan eklediğin videolar herkes için ortak olarak yayınlanır.</div>
+
+      <form id="videoForm">
+        <div class="grid">
+          <div class="full">
+            <label for="title">Video başlığı</label>
+            <input id="title" required />
+          </div>
+
+          <div class="full">
+            <label for="description">Açıklama</label>
+            <textarea id="description" required></textarea>
+          </div>
+
+          <div>
+            <label for="category">Kategori</label>
+            <select id="category" required>
+              <option value="">Seçiniz</option>
+              <option value="ielts">IELTS</option>
+              <option value="toefl">TOEFL</option>
+              <option value="yds">YDS</option>
+              <option value="genel">Genel İngilizce</option>
+            </select>
+          </div>
+
+          <div>
+            <label for="duration">Süre</label>
+            <input id="duration" placeholder="12 dk" required />
+          </div>
+
+          <div>
+            <label for="level">Seviye</label>
+            <input id="level" placeholder="A2 - B1" required />
+          </div>
+
+          <div>
+            <label for="youtube">YouTube linki veya ID</label>
+            <input id="youtube" required />
           </div>
         </div>
-      </header>
 
-      <a class="back-link" href="index.html">← Ana sayfaya dön</a>
+        <div class="actions">
+          <button type="submit" class="primary">Videoyu Kaydet</button>
+          <button type="button" class="secondary" id="clearBtn">Formu Temizle</button>
+        </div>
+
+        <div id="status" class="status"></div>
+      </form>
     </div>
 
-    <section class="hero">
-      <div class="hero-content">
-        <h1>Video girişlerini tek panelden yönet.</h1>
-        <p>
-          Aşağıdaki form ile yeni video ekleyebilirsin. Kayıtlar tarayıcıda saklanır ve ziyaretçi video sayfasında otomatik görünür.
-        </p>
-      </div>
-    </section>
-
-    <section class="layout">
-      <div class="panel">
-        <div class="panel-title">Yeni video ekle</div>
-        <div class="panel-subtitle">
-          YouTube bağlantısını tam link olarak ya da sadece video ID olarak girebilirsin.
-        </div>
-
-        <div class="helper-box">
-          Örnek link: <strong>https://www.youtube.com/watch?v=HAnw168huqA</strong><br>
-          Örnek ID: <strong>HAnw168huqA</strong>
-        </div>
-
-        <form id="videoForm">
-          <div class="form-grid">
-            <div class="form-group full">
-              <label for="title">Video başlığı</label>
-              <input id="title" type="text" placeholder="Örn: IELTS Writing Task 2 Giriş Teknikleri" required>
-            </div>
-
-            <div class="form-group full">
-              <label for="description">Açıklama</label>
-              <textarea id="description" placeholder="Videonun kısa açıklamasını yaz..." required></textarea>
-            </div>
-
-            <div class="form-group">
-              <label for="category">Kategori</label>
-              <select id="category" required>
-                <option value="">Seçiniz</option>
-                <option value="ielts">IELTS</option>
-                <option value="toefl">TOEFL</option>
-                <option value="yds">YDS</option>
-                <option value="genel">Genel İngilizce</option>
-              </select>
-            </div>
-
-            <div class="form-group">
-              <label for="duration">Süre</label>
-              <input id="duration" type="text" placeholder="Örn: 12 dk" required>
-            </div>
-
-            <div class="form-group">
-              <label for="level">Seviye</label>
-              <input id="level" type="text" placeholder="Örn: A2 - B1" required>
-            </div>
-
-            <div class="form-group">
-              <label for="youtube">YouTube linki veya ID</label>
-              <input id="youtube" type="text" placeholder="Link veya video ID gir" required>
-            </div>
-          </div>
-
-          <div class="form-actions">
-            <button type="submit" class="primary-btn">Videoyu kaydet</button>
-            <button type="button" id="resetBtn" class="secondary-btn">Formu temizle</button>
-            <button type="button" id="clearAllBtn" class="danger-btn">Tüm videoları sil</button>
-          </div>
-
-          <div id="statusMessage" class="status"></div>
-        </form>
-      </div>
-
-      <div class="panel">
-        <div class="panel-title">Kayıtlı videolar</div>
-        <div class="panel-subtitle">
-          Eklediğin videolar burada listelenir. Her videoyu ayrı ayrı silebilirsin.
-        </div>
-
-        <div id="videoList" class="video-list"></div>
-      </div>
-    </section>
-
-    <div class="footer-note">
-      Admin video giriş paneli · Videolar sayfasına bağlı
+    <div class="panel">
+      <h2>Yayınlanmış videolar</h2>
+      <div id="videoList" class="list"></div>
     </div>
   </div>
 
   <script>
-    const STORAGE_KEY = "adminVideos";
+    const API_URL = "https://script.google.com/macros/s/AKfycbxTz0AeA_8u--jrvFZp8JZRGTtdj3JPpY-uBLHHveGLCeVcGham182YgY8AQKelaXDRVQ/exec";
 
     const categoryLabels = {
       ielts: "IELTS",
@@ -639,40 +173,17 @@
     };
 
     const form = document.getElementById("videoForm");
-    const titleInput = document.getElementById("title");
-    const descriptionInput = document.getElementById("description");
-    const categoryInput = document.getElementById("category");
-    const durationInput = document.getElementById("duration");
-    const levelInput = document.getElementById("level");
-    const youtubeInput = document.getElementById("youtube");
-    const statusMessage = document.getElementById("statusMessage");
-    const videoList = document.getElementById("videoList");
-    const resetBtn = document.getElementById("resetBtn");
-    const clearAllBtn = document.getElementById("clearAllBtn");
+    const statusEl = document.getElementById("status");
+    const listEl = document.getElementById("videoList");
 
-    function getStoredVideos() {
-      try {
-        const raw = localStorage.getItem(STORAGE_KEY);
-        if (!raw) return [];
-        const parsed = JSON.parse(raw);
-        return Array.isArray(parsed) ? parsed : [];
-      } catch (error) {
-        console.error("Video listesi okunamadı:", error);
-        return [];
-      }
-    }
-
-    function saveVideos(videos) {
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(videos));
+    function setStatus(message, type = "") {
+      statusEl.textContent = message;
+      statusEl.className = `status ${type}`;
     }
 
     function getYoutubeId(input) {
       const value = input.trim();
-
-      if (!value) return "";
-
-      const shortPattern = /^[a-zA-Z0-9_-]{11}$/;
-      if (shortPattern.test(value)) return value;
+      if (/^[a-zA-Z0-9_-]{11}$/.test(value)) return value;
 
       try {
         const url = new URL(value);
@@ -685,151 +196,97 @@
           const watchId = url.searchParams.get("v");
           if (watchId) return watchId.trim();
 
-          const pathParts = url.pathname.split("/").filter(Boolean);
-          const embedIndex = pathParts.findIndex(part => part === "embed");
-          if (embedIndex !== -1 && pathParts[embedIndex + 1]) {
-            return pathParts[embedIndex + 1].trim();
+          const parts = url.pathname.split("/").filter(Boolean);
+          const embedIndex = parts.findIndex(p => p === "embed");
+          if (embedIndex !== -1 && parts[embedIndex + 1]) {
+            return parts[embedIndex + 1].trim();
           }
         }
-      } catch (error) {
-        return "";
-      }
+      } catch (e) {}
 
       return "";
     }
 
-    function setStatus(message, type) {
-      statusMessage.textContent = message;
-      statusMessage.className = `status ${type}`;
-    }
+    async function loadVideos() {
+      try {
+        const res = await fetch(API_URL);
+        const videos = await res.json();
 
-    function clearStatus() {
-      statusMessage.textContent = "";
-      statusMessage.className = "status";
-    }
+        if (!Array.isArray(videos) || videos.length === 0) {
+          listEl.innerHTML = `<div class="item"><div class="meta">Henüz kayıtlı video yok.</div></div>`;
+          return;
+        }
 
-    function resetForm() {
-      form.reset();
-      clearStatus();
-      titleInput.focus();
-    }
-
-    function renderVideos() {
-      const videos = getStoredVideos();
-
-      if (videos.length === 0) {
-        videoList.innerHTML = `
-          <div class="empty-state">
-            Henüz kayıtlı video yok. Soldaki formu kullanarak ilk videoyu ekleyebilirsin.
+        listEl.innerHTML = videos.slice().reverse().map(video => `
+          <div class="item">
+            <h3>${video.title || ""}</h3>
+            <div class="meta">
+              ${video.categoryLabel || ""} · ${video.duration || ""} · ${video.level || ""}
+            </div>
+            <div class="meta" style="margin-top:8px;">${video.description || ""}</div>
+            <div class="meta" style="margin-top:8px;">YouTube ID: ${video.youtubeId || ""}</div>
           </div>
-        `;
-        return;
+        `).join("");
+      } catch (error) {
+        listEl.innerHTML = `<div class="item"><div class="meta">Videolar yüklenemedi.</div></div>`;
       }
-
-      videoList.innerHTML = "";
-
-      videos.forEach((video, index) => {
-        const item = document.createElement("article");
-        item.className = "video-item";
-
-        item.innerHTML = `
-          <div class="video-top">
-            <div class="video-title">${video.title}</div>
-            <div class="video-badge">${video.categoryLabel}</div>
-          </div>
-
-          <div class="video-meta">
-            <div class="meta-chip">Süre: ${video.duration}</div>
-            <div class="meta-chip">Seviye: ${video.level}</div>
-            <div class="meta-chip">ID: ${video.youtubeId}</div>
-          </div>
-
-          <div class="video-desc">${video.description}</div>
-
-          <div class="video-links">
-            <a href="https://www.youtube.com/watch?v=${video.youtubeId}" target="_blank" rel="noopener noreferrer">
-              YouTube'da aç →
-            </a>
-            <a href="https://www.youtube.com/embed/${video.youtubeId}" target="_blank" rel="noopener noreferrer">
-              Embed linkini aç →
-            </a>
-          </div>
-
-          <div class="video-actions">
-            <button class="danger-btn" data-index="${index}">Bu videoyu sil</button>
-          </div>
-        `;
-
-        const deleteBtn = item.querySelector(".danger-btn");
-        deleteBtn.addEventListener("click", () => deleteVideo(index));
-
-        videoList.appendChild(item);
-      });
     }
 
-    function deleteVideo(index) {
-      const videos = getStoredVideos();
-      videos.splice(index, 1);
-      saveVideos(videos);
-      renderVideos();
-      setStatus("Video silindi.", "success");
-    }
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      setStatus("");
 
-    function clearAllVideos() {
-      const videos = getStoredVideos();
-      if (videos.length === 0) {
-        setStatus("Silinecek kayıtlı video bulunamadı.", "error");
-        return;
-      }
-
-      const confirmed = window.confirm("Tüm videoları silmek istediğine emin misin?");
-      if (!confirmed) return;
-
-      localStorage.removeItem(STORAGE_KEY);
-      renderVideos();
-      setStatus("Tüm videolar silindi.", "success");
-    }
-
-    form.addEventListener("submit", (event) => {
-      event.preventDefault();
-      clearStatus();
-
-      const youtubeId = getYoutubeId(youtubeInput.value);
+      const title = document.getElementById("title").value.trim();
+      const description = document.getElementById("description").value.trim();
+      const category = document.getElementById("category").value;
+      const duration = document.getElementById("duration").value.trim();
+      const level = document.getElementById("level").value.trim();
+      const youtubeRaw = document.getElementById("youtube").value.trim();
+      const youtubeId = getYoutubeId(youtubeRaw);
 
       if (!youtubeId) {
-        setStatus("Geçerli bir YouTube linki veya 11 karakterlik video ID gir.", "error");
+        setStatus("Geçerli bir YouTube linki veya ID gir.", "err");
         return;
       }
 
-      const newVideo = {
-        title: titleInput.value.trim(),
-        description: descriptionInput.value.trim(),
-        category: categoryInput.value,
-        categoryLabel: categoryLabels[categoryInput.value] || categoryInput.value,
-        duration: durationInput.value.trim(),
-        level: levelInput.value.trim(),
+      const payload = {
+        title,
+        description,
+        category,
+        categoryLabel: categoryLabels[category] || category,
+        duration,
+        level,
         youtubeId,
         createdAt: new Date().toISOString()
       };
 
-      if (!newVideo.title || !newVideo.description || !newVideo.category || !newVideo.duration || !newVideo.level) {
-        setStatus("Lütfen tüm alanları doldur.", "error");
-        return;
+      try {
+        const res = await fetch(API_URL, {
+          method: "POST",
+          headers: { "Content-Type": "text/plain;charset=utf-8" },
+          body: JSON.stringify(payload)
+        });
+
+        const result = await res.json();
+
+        if (result.success) {
+          setStatus("Video başarıyla kaydedildi.", "ok");
+          form.reset();
+          loadVideos();
+        } else {
+          setStatus("Kayıt sırasında hata oluştu.", "err");
+        }
+      } catch (error) {
+        setStatus("Bağlantı hatası oluştu.", "err");
       }
-
-      const videos = getStoredVideos();
-      videos.unshift(newVideo);
-      saveVideos(videos);
-
-      renderVideos();
-      setStatus("Video başarıyla kaydedildi.", "success");
-      resetForm();
     });
 
-    resetBtn.addEventListener("click", resetForm);
-    clearAllBtn.addEventListener("click", clearAllVideos);
+    document.getElementById("clearBtn").addEventListener("click", () => {
+      form.reset();
+      setStatus("");
+    });
 
-    renderVideos();
+    loadVideos();
   </script>
 </body>
 </html>
